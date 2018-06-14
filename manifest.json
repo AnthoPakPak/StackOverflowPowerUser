@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+
+  "name": "StackOverflow ++",
+  "short_name": "SO ++",
+  "version": "0.1.2",
+  "description": "Stop wasting time while programming ! Adds many options to save time when searching for solutions on StackOverflow",
+
+  "content_scripts": [{
+    "css": ["css/contentStyle.css", "css/floatingSidebar.css"],
+    "js": ["content.js"],
+    "matches": ["https://stackoverflow.com/questions/*/*",
+                "https://meta.stackoverflow.com/questions/*/*",
+                "https://superuser.com/questions/*/*",
+                "https://*.stackexchange.com/questions/*/*"]
+  }],
+
+  "web_accessible_resources": [
+    "images/*"
+  ],
+
+  "permissions": ["storage"],
+  "options_page": "options_page.html",
+  "icons": {
+    "128": "icons/icon128.png",
+    "48": "icons/icon48.png",
+    "16": "icons/icon16.png"
+  },
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+
+}

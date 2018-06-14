@@ -1,0 +1,14 @@
+.circlePercent {
+    width: 50px;
+    height: 50px;
+    line-height:50px; /*pour centrer le texte verticalement (même taille que height)*/
+    text-align:center;
+    border-radius: 50%;
+
+    font-size:15px;
+    margin-top:15px;
+}
+
+#left-sidebar {
+    display: none;
+}

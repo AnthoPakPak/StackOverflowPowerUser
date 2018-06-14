@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StackOverflow++ Options</title>
+	<style>
+	/* Style for this page */
+		body>.main-container{max-width:600px;margin:50px auto}
+		header{max-width:700px;margin:0 auto 20px auto;font-size:48px; text-align: center}
+		header em {font-size:15px}
+        footer{max-width:700px;margin:0 auto 20px auto;text-align: center}
+	</style>
+
+	<link rel="stylesheet" href="css/chrome_shared.css"/>
+
+	<script type="text/javascript" src="options_page.js"></script>
+
+</head>
+
+<body>
+	<div class="main-container">
+		<header>
+			<img src="icons/icon48.png">
+			StackOverflow++
+            <br/>
+            <em>Stop wasting time while programming !</em>
+
+        </header>
+
+		<h1>Options</h1>
+		<hr/>
+		<form>
+            <input type="checkbox" id="betterAnswerEnabled">
+            <label for="betterAnswerEnabled">Show indicator when there's a better answer than the accepted one</label>
+            <br/><em>If a question has a better answer than the accepted one, it shows an clickable arrow to easily notice it and avoid wasting time.</em> (<a href="https://stackoverflow.com/questions/6131205/iphone-how-to-find-topmost-view-controller" target="_blank">Try it</a>)
+            <br/><br/>
+
+			<input type="checkbox" id="noAnswerEnabled">
+			<label for="noAnswerEnabled">Show indicator when no answer on question</label>
+			<br/><em>If a question has no answer, it shows a disappointed smiley to easily notice it and avoid wasting time reading the question.</em> (<a href="https://stackoverflow.com/questions/38728331/uibarbuttonitems-in-uinavigationbar-are-sticking-to-the-borders" target="_blank">Try it</a>)
+			<br/><br/>
+
+            <input type="checkbox" id="autoScrollFirstAnswerEnabled">
+            <label for="autoScrollFirstAnswerEnabled">Auto-scroll to first answer</label>
+            <br/><em>Automatically scroll to the first answer, as you usually don't have to read the question.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+            <br/><br/>
+
+            <input type="checkbox" id="showSidebarEnabled">
+            <label for="showSidebarEnabled">Show answers sidebar (with vote counts)</label>
+            <br/><em>Shows a floating sidebar on the left that shows score of first 5 answers, as sometimes it can be interesting to read other well upvoted answers. It will also inform you if you have already upvoted an answer previously on this page.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+            <br/><br/>
+
+            <input type="checkbox" id="navigationArrowKeysEnabled">
+            <label for="navigationArrowKeysEnabled">Navigation through answers with keyboard arrow keys (left/right)</label>
+            <br/><em>Give the ability to navigate through all answers without having to remove your hands from keyboard.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+            <br/><br/>
+
+			<input type="checkbox" id="autoExpandVotesCountEnabled">
+			<label for="autoExpandVotesCountEnabled">Auto expand votes count & Show answer score (in percent)</label>
+            <br/><em><strong>You need to have at least 1000 reputation on StackOverflow for this feature to work.</strong> When arriving on Stack Overflow page, it automatically expand votes count (upvotes/downvote) and shows the score of the answer (in percent).</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+			<br/><br/>
+
+			<input type="checkbox" id="hideStackOverflowLeftSidebar">
+			<label for="hideStackOverflowLeftSidebar">Hide the new StackOverflow left sidebar</label> <span style="color:red">NEW !</span>
+			<br/><em>Just hide the new sidebar with "Home", "Tags", "Users", "Jobs", that may be useless for most users and takes too much space.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+
+
+			<br/><br/><br/>
+			<input type="button" id="saveButton" value="Save"/>
+			<span id="confirmation" style="color:red"></span>
+
+		</form>
+
+
+
+
+
+
+		<br/>
+		<h1>Note</h1>
+		<hr/>
+		<p>Feedback on this extension is much welcomed ! Do not hesitate to contact me if you have any question/feature request.
+            <br/>The project will be open-sourced if it have enough attention from people, so as we can develop even faster !</p>
+
+
+        <br/><br/><br/>
+        <footer>Anthonin Cocagne - <a href="mailto:anthococagne@hotmail.fr">Mail</a> |
+            <a href="https://www.linkedin.com/in/anthonin-cocagne-22aa6ab5/" target="_blank">LinkedIn</a> |
+            <a href="https://stackoverflow.com/users/4894980/anthopak" target="_blank">StackOverflow</a></footer>
+	</div>
+</body>
+</html>

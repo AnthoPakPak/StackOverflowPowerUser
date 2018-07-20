@@ -146,14 +146,34 @@ function showNoAnswerImageOnQuestion() {
 
 
 function autoExpandVotesCounts() {
+    if (userHasEnoughReputation()) { //avoid simulated clicks if user has less than 1000 rep
+        // console.log("user has enough rep");
+        setTimeout(function () {
+            addListenerOnVoteCounts();
 
-    setTimeout(function () {
-        addListenerOnVoteCounts();
-
-        expandVotesCountOnIndex(0, true);
-    }, 1000);
-
+            expandVotesCountOnIndex(0, true);
+        }, 1000);
+    } else {
+        // console.log("user hasn't got enough rep or isn't logged in");
+    }
 }
+
+
+/**
+ * Verify that user has more than 1000 reputation points
+ */
+function userHasEnoughReputation() {
+    if (document.getElementsByClassName("-rep js-header-rep").length > 0) { //user is logged in
+        let reputationString = document.getElementsByClassName("-rep js-header-rep")[0].innerHTML; //will have this kind of format, 342 | 1,872 | 13k
+        console.log("rep string " + reputationString);
+        if (reputationString.indexOf(",") !== -1 || reputationString.indexOf("k") !== -1) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 
 
 function addListenerOnVoteCounts() {

@@ -10,9 +10,14 @@
     "css": ["css/contentStyle.css", "css/floatingSidebar.css"],
     "js": ["content.js"],
     "matches": ["https://stackoverflow.com/questions/*/*",
-                "https://meta.stackoverflow.com/questions/*/*",
                 "https://superuser.com/questions/*/*",
-                "https://*.stackexchange.com/questions/*/*"]
+                "https://*.stackexchange.com/questions/*/*",
+            	"https://stackapps.com/*/*",
+            	"https://askubuntu.com/*/*",
+            	"https://serverfault.com/*/*",
+            	"https://mathoverflow.net/*/*",
+            	"https://meta.stackoverflow.com/*/*",
+            	"https://meta.stackexchange.com/*/*"]
   }],
 
   "web_accessible_resources": [

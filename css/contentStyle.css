@@ -1,4 +1,5 @@
 .circlePercent {
+    color: black;
     width: 50px;
     height: 50px;
     line-height:50px; /*pour centrer le texte verticalement (même taille que height)*/

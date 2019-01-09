@@ -35,7 +35,7 @@ getUserPrefs(function() {
 
         if (userPrefs.betterAnswerEnabled) {
             if (!noAnswerOnQuestion) { //s'il y a des réponses
-                if (document.getElementsByClassName("vote-accepted-on").length === 1) { //si on a une réponse acceptée
+                if (document.getElementsByClassName("js-accepted-answer-indicator d-none").length > 0) { //si on a une réponse acceptée (depuis update SO il y a plusieurs elements avec cette classe, mais un seul n'a pas la classe "d-none" (qui permet de cacher)
                     //console.log("There's an accepted answer");
                     checkForBetterAnswer();
                 } else {
@@ -52,11 +52,11 @@ getUserPrefs(function() {
         if (userPrefs.showSidebarEnabled) {
             showSidebarWithVotesCount();
             checkIfIHaveAlreadyUpvotedAnAnswer();
+            addListenerOnUpvoteButtons();
         }
 
         if (userPrefs.autoExpandVotesCountEnabled) {
             autoExpandVotesCounts();
-            addListenerOnUpvoteButtons();
         }
 
         if (!userPrefs.hideStackOverflowLeftSidebar) {
@@ -84,8 +84,8 @@ getUserPrefs(function() {
 
 function checkForBetterAnswer() {
     if (document.getElementsByClassName("answer").length >= 2) { //s'il y a au moins 2 réponses
-        let nbVotesAcceptedAnswer = parseInt((document.getElementsByClassName("vote-count-post")[acceptedAnswerId]).innerHTML);
-        let nbVotesNextAnswer = parseInt((document.getElementsByClassName("vote-count-post")[nextAnswerId]).innerHTML);
+        let nbVotesAcceptedAnswer = parseInt((document.getElementsByClassName("js-vote-count")[acceptedAnswerId]).innerHTML);
+        let nbVotesNextAnswer = parseInt((document.getElementsByClassName("js-vote-count")[nextAnswerId]).innerHTML);
 
         //console.log(nbVotesAcceptedAnswer);
         //console.log(nbVotesNextAnswer);
@@ -104,7 +104,7 @@ function checkForBetterAnswer() {
 
 
 function showArrowDownImageOnAcceptedAnswer() {
-    let acceptedAnswerVoteDiv = document.getElementsByClassName("vote")[acceptedAnswerId];
+    let acceptedAnswerVoteDiv = document.getElementsByClassName("js-voting-container")[acceptedAnswerId];
 
     let goDownLink = document.createElement("A");
     //goDownLink.src ="#";
@@ -126,7 +126,7 @@ function showArrowDownImageOnAcceptedAnswer() {
 //region No answer image
 
 function showNoAnswerImageOnQuestion() {
-    let questionVoteDiv = document.getElementsByClassName("vote")[questionId];
+    let questionVoteDiv = document.getElementsByClassName("js-voting-container")[questionId];
 
     let noAnswerImg = document.createElement("IMG");
     //goDownImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Human-go-down.svg/2000px-Human-go-down.svg.png";
@@ -177,7 +177,7 @@ function userHasEnoughReputation() {
 
 
 function addListenerOnVoteCounts() {
-    let votesCountArray = document.getElementsByClassName("vote-count-post");
+    let votesCountArray = document.getElementsByClassName("js-vote-count");
 
     for (let i = 0; i <votesCountArray.length;i++) {
         //wait until finish before launching the next fetch
@@ -215,7 +215,7 @@ function addListenerOnVoteCounts() {
 function expandVotesCountOnIndex(index, withDelay) {
     let delay = withDelay ? 1000 : 0;
     setTimeout(function () {
-        let votesCountArray = document.getElementsByClassName("vote-count-post");
+        let votesCountArray = document.getElementsByClassName("js-vote-count");
 
         if (index < votesCountArray.length)
             votesCountArray[index].click();
@@ -231,8 +231,8 @@ function expandVotesCountOnIndex(index, withDelay) {
 function setPourcentageForIndex(index) {
     //console.log("index : " + index);
 
-    let votesCountArray = document.getElementsByClassName("vote-count-post");
-    let voteDiv = document.getElementsByClassName("vote")[index];
+    let votesCountArray = document.getElementsByClassName("js-vote-count");
+    let voteDiv = document.getElementsByClassName("js-voting-container")[index];
 
     let upVotes = parseInt(votesCountArray[index].getElementsByTagName("DIV")[0].innerHTML);
     let downVotes = Math.abs(parseInt(votesCountArray[index].getElementsByTagName("DIV")[2].innerHTML)); //turn it to positive number (remove -)
@@ -417,8 +417,8 @@ function hasReleasedKey(e) {
 
 function checkIfIHaveAlreadyUpvotedAnAnswer() {
     setTimeout(function () {
-        let myUpvotesArray = document.getElementsByClassName("vote-up-on");
-        let allVotesArray = document.getElementsByClassName("vote");
+        let myUpvotesArray = document.getElementsByClassName("js-vote-up-btn fc-theme-primary");
+        let allVotesArray = document.getElementsByClassName("js-voting-container");
 
         if (myUpvotesArray.length > 0) {
             //alert("Il y a une réponse déjà upvotée !");
@@ -451,7 +451,7 @@ function checkIfIHaveAlreadyUpvotedAnAnswer() {
 
 //génére une sidebar reprise d'ici https://codepen.io/anon/pen/KodazE
 function showSidebarWithVotesCount() {
-    let votesCountArray = document.getElementsByClassName("vote-count-post");
+    let votesCountArray = document.getElementsByClassName("js-vote-count");
 
     let ul = document.createElement("UL");
     ul.className = "social noselect";
@@ -467,7 +467,7 @@ function showSidebarWithVotesCount() {
             scrollToAnswerAtIndex(i, true);
         });
 
-        let nbVotesAnswerI = parseInt((document.getElementsByClassName("vote-count-post")[i]).innerHTML);
+        let nbVotesAnswerI = parseInt((document.getElementsByClassName("js-vote-count")[i]).innerHTML);
 
         a.innerHTML = nbVotesAnswerI;
 
@@ -519,7 +519,30 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
     let a = document.createElement("A");
 
     a.id = "nbAnswers";
-    a.innerHTML = nbAnswers + "<br>ans";
+    a.innerHTML = nbAnswers + "<br><div style=\"font-size:10px\">answers</div>";
+
+
+    //add additional informations in popover
+    let nbFavorites = document.getElementsByClassName("js-favorite-count mt8")[0].innerHTML;
+    if (nbFavorites === '') {
+        nbFavorites = '0';
+    }
+    let nbViews = document.getElementById("qinfo").getElementsByTagName("b")[1].innerHTML.replace(' times', '').replace(',', ' ');
+    let asked = document.getElementById("qinfo").getElementsByTagName("b")[0].getElementsByTagName("time")[0].innerHTML;
+
+    let lastActive;
+    if (document.getElementById("qinfo").getElementsByTagName("b").length > 2) {
+        lastActive = document.getElementById("qinfo").getElementsByTagName("b")[2].getElementsByTagName("a")[0].innerHTML;
+    }
+
+    a.innerHTML += "<span>\n" +
+        "&#9679; <b>Favorites :</b> " + nbFavorites + "<br>\n" +
+        "&#9679; <b>Views :</b> " + nbViews + "<br>\n" +
+        "&#9679; <b>Asked :</b> " + asked + "<br>\n" +
+        "&#9679; <b>Last active :</b> " + lastActive + "\n" +
+        "</span>";
+    //end popover
+
 
     li.addEventListener("click", function() {
         scrollToAnswerAtIndex(0, true);
@@ -545,16 +568,20 @@ function addUpvotedClassToCellAtIndex(index, addUpvoted) {
 
 
 function addListenerOnUpvoteButtons() {
-    let upvoteArray = document.getElementsByClassName("vote-up-off");
+    let upvoteArray = document.getElementsByClassName("js-vote-up-btn");
 
     for (let i = 1; i < upvoteArray.length;i++) { //on commence à 1 pour avoir que les rep
         let upvoteButton = upvoteArray[i];
         upvoteButton.addEventListener("click", function() {
-            if (!upvoteButton.classList.contains("vote-up-on")) { //on inverse la condition meme si ca n'a pas de sens car la modif est faite juste après le upvote
-                addUpvotedClassToCellAtIndex(i, true);
-            } else {
-                addUpvotedClassToCellAtIndex(i, false);
-            }
+            setTimeout(function () {
+                if (upvoteButton.classList.contains("fc-theme-primary")) { //on inverse la condition meme si ca n'a pas de sens car la modif est faite juste après le upvote
+                    addUpvotedClassToCellAtIndex(i, true);
+                } else {
+                    addUpvotedClassToCellAtIndex(i, false);
+                }
+            }, 1); //this very very small delay is necessary so that fc-theme-primary class is set
+
+
         });
     }
 }

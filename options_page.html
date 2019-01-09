@@ -35,7 +35,7 @@
             <br/><br/>
 
 			<input type="checkbox" id="noAnswerEnabled">
-			<label for="noAnswerEnabled">Show indicator when no answer on question</label>
+			<label for="noAnswerEnabled">Show indicator when there isn't any answer to the question</label>
 			<br/><em>If a question has no answer, it shows a disappointed smiley to easily notice it and avoid wasting time reading the question.</em> (<a href="https://stackoverflow.com/questions/38728331/uibarbuttonitems-in-uinavigationbar-are-sticking-to-the-borders" target="_blank">Try it</a>)
 			<br/><br/>
 
@@ -46,7 +46,7 @@
 
             <input type="checkbox" id="showSidebarEnabled">
             <label for="showSidebarEnabled">Show answers sidebar (with vote counts)</label>
-            <br/><em>Shows a floating sidebar on the left that shows score of first 5 answers, as sometimes it can be interesting to read other well upvoted answers. It will also inform you if you have already upvoted an answer previously on this page.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+            <br/><em>Shows a floating sidebar on the left that shows score of first 5 answers, as sometimes it can be interesting to read other well upvoted answers. It will also inform you if you have already upvoted an answer previously on this page. You can also hover the first cell to get additional information about the current page.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
             <br/><br/>
 
             <input type="checkbox" id="navigationArrowKeysEnabled">
@@ -60,7 +60,7 @@
 			<br/><br/>
 
 			<input type="checkbox" id="hideStackOverflowLeftSidebar">
-			<label for="hideStackOverflowLeftSidebar">Hide the new StackOverflow left sidebar</label> <span style="color:red">NEW !</span>
+			<label for="hideStackOverflowLeftSidebar">Hide the useless StackOverflow left sidebar</label>
 			<br/><em>Just hide the new sidebar with "Home", "Tags", "Users", "Jobs", that may be useless for most users and takes too much space.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
 
 
@@ -88,9 +88,17 @@
 		<hr/>
 		<ul>
 			<strong>
-				<li>0.1.3</li>
-				- Automatically disable <em>Auto expand votes count & Show answer score</em> if you doesn't have enough reputation (the setting is not disabled in this settings page, to prevent you from being unable to use it when you'll have enough rep)
+				<li>0.2.0</li>
+				- Fix extension for StackOverflow website update<br/>
+                - Answers Sidebar : add the ability to hover the number of answers cell to get additional information about the current page<br/>
+                - Small bug fixes in Answer Sidebar
 			</strong>
+            <br/><br/>
+			<li>0.1.4</li>
+				- Add new Stack Exchange websites support
+			<br/><br/>
+			<li>0.1.3</li>
+				- Automatically disable <em>Auto expand votes count & Show answer score</em> if you doesn't have enough reputation (the setting is not disabled in this settings page, to prevent you from being unable to use it when you'll have enough rep)
 			<br/><br/>
 			<li>0.1.2</li>
 			- Add option to disable the new left sidebar that appears on every page (it will only disable it on questions/answers pages, and not in profile etc)

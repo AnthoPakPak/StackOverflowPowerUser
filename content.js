@@ -535,6 +535,8 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
     let lastActive;
     if (document.getElementById("qinfo").getElementsByTagName("b").length > 2) {
         lastActive = document.getElementById("qinfo").getElementsByTagName("b")[2].getElementsByTagName("a")[0].innerHTML;
+    } else {
+        lastActive = "N/A";
     }
 
     a.innerHTML += "<span>\n" +

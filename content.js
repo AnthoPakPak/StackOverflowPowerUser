@@ -427,7 +427,7 @@ function checkIfIHaveAlreadyUpvotedAnAnswer() {
             for (var i = 0; i < myUpvotesArray.length; i++) {
                 let myUpvote = myUpvotesArray[i];
 
-                for (var j = 1; j < allVotesArray.length; j++) {
+                for (var j = 0; j < allVotesArray.length; j++) {
                     if (allVotesArray[j] === myUpvote.parentNode) {
                         if (j > nbCellsInSidebar) {
                             alert("Il y a une réponse déjà upvotée vers le bas !");
@@ -464,6 +464,8 @@ function showSidebarWithVotesCount() {
         //let span = document.createElement("SPAN"); // remettreForDetail
         //a.href = "#";
         li.addEventListener("click", function() {
+            var targetElement = event.target || event.srcElement;
+            console.log(targetElement);
             scrollToAnswerAtIndex(i, true);
         });
 
@@ -540,12 +542,19 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
         "&#9679; <b>Views :</b> " + nbViews + "<br>\n" +
         "&#9679; <b>Asked :</b> " + asked + "<br>\n" +
         "&#9679; <b>Last active :</b> " + lastActive + "\n" +
+        "<br/><center><button id='upvoteQuestionButton'>Upvote question</button></center>" +
         "</span>";
     //end popover
 
 
     li.addEventListener("click", function() {
-        scrollToAnswerAtIndex(0, true);
+        var targetElement = event.target || event.srcElement;
+
+        if (targetElement.id === 'upvoteQuestionButton') {
+            upvoteQuestion();
+        } else {
+            scrollToAnswerAtIndex(0, true);
+        }
     });
 
     li.appendChild(a);
@@ -554,6 +563,7 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
 
 
 function addUpvotedClassToCellAtIndex(index, addUpvoted) {
+    console.log("add log to cell " + index);
     let sideBar = document.getElementsByClassName("social")[0];
     let upvotedAnswerA = sideBar.getElementsByTagName("A")[index];
     if (upvotedAnswerA) {
@@ -562,15 +572,23 @@ function addUpvotedClassToCellAtIndex(index, addUpvoted) {
         } else {
             upvotedAnswerA.className = "";
         }
+
+        if (index === 0) { //for question, change button text according to status
+            if (addUpvoted) {
+                document.getElementById("upvoteQuestionButton").innerText = "Undo upvote";
+            } else {
+                document.getElementById("upvoteQuestionButton").innerText = "Upvote question";
+            }
+        }
     }
 }
 
 
-
+//add listeners on native stackoverflow upvote buttons
 function addListenerOnUpvoteButtons() {
     let upvoteArray = document.getElementsByClassName("js-vote-up-btn");
 
-    for (let i = 1; i < upvoteArray.length;i++) { //on commence à 1 pour avoir que les rep
+    for (let i = 0; i < upvoteArray.length;i++) { //on commence à 1 pour avoir que les rep (maintenant on a aussi la question donc 0)
         let upvoteButton = upvoteArray[i];
         upvoteButton.addEventListener("click", function() {
             setTimeout(function () {
@@ -589,6 +607,20 @@ function addListenerOnUpvoteButtons() {
 //endregion
 
 
+//region Upvote posts
+
+function upvoteQuestion() {
+    upvotePostAtIndex(0);
+}
+
+function upvotePostAtIndex(index) {
+    let allUpvoteButtons = document.getElementsByClassName("js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer sox-better-css");
+    if (index < allUpvoteButtons.length) {
+        allUpvoteButtons[index].click();
+    }
+}
+
+//endregion
 
 
 //region UserPrefs

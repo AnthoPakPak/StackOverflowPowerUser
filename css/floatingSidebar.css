@@ -36,6 +36,16 @@
     background: #FF8040;
 }
 
+#nbAnswers.upvotedAnswer {
+    color: #FF8040 !important;
+    transition: color .5s ease .300ms
+}
+
+#upvoteQuestionButton {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
 .social li a:hover { background: #3b5998 }
 /*.social li:nth-child(2) a:hover { background: #00acee }*/
 /*.social li:nth-child(3) a:hover { background: #ea4c89 }*/

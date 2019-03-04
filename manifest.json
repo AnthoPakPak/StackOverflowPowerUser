@@ -3,7 +3,7 @@
 
   "name": "StackOverflow Power User",
   "short_name": "SO Power User",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Stop wasting time while programming ! Adds many options to save time when searching for solutions on StackOverflow",
 
   "content_scripts": [{

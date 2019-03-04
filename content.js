@@ -529,7 +529,7 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
     if (nbFavorites === '') {
         nbFavorites = '0';
     }
-    let nbViews = document.getElementById("qinfo").getElementsByTagName("b")[1].innerHTML.replace(' times', '').replace(',', ' ');
+    let nbViews = document.getElementById("qinfo").getElementsByTagName("b")[1].innerHTML.replace(' times', '');
     let asked = document.getElementById("qinfo").getElementsByTagName("b")[0].getElementsByTagName("time")[0].innerHTML;
 
     let lastActive;
@@ -543,7 +543,7 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
         "&#9679; <b>Favorites :</b> " + nbFavorites + "<br>\n" +
         "&#9679; <b>Views :</b> " + nbViews + "<br>\n" +
         "&#9679; <b>Asked :</b> " + asked + "<br>\n" +
-        "&#9679; <b>Last active :</b> " + lastActive + "\n" +
+        "&#9679; <b>Active :</b> " + lastActive + "\n" +
         "<br/><center><button id='upvoteQuestionButton'>Upvote question</button></center>" +
         "</span>";
     //end popover

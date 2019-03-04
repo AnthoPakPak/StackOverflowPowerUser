@@ -133,3 +133,9 @@ hr{
 label {
     font-weight: bold;
 }
+
+
+
+header span {
+    font-size: 40%;
+}

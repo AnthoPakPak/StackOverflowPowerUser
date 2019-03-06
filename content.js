@@ -619,7 +619,7 @@ function upvoteQuestion() {
 }
 
 function upvotePostAtIndex(index) {
-    let allUpvoteButtons = document.getElementsByClassName("js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer sox-better-css");
+    let allUpvoteButtons = document.getElementsByClassName("js-vote-up-btn");
     if (index < allUpvoteButtons.length) {
         allUpvoteButtons[index].click();
     }

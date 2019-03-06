@@ -2,6 +2,9 @@
  *
  * NOTE : Code is ugly, it will be updated when I'll have time. Please be nice :)
  *
+ * When I have time :
+ * - Show last visited page date using https://developers.chrome.com/extensions/history#method-search & https://stackoverflow.com/a/14211874/4894980
+ *
  */
 
 

@@ -532,6 +532,8 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
 
 
     //add additional informations in popover
+    let nbUpvotesOnQuestion = parseInt(document.getElementsByClassName("js-vote-count")[0].innerText);
+
     let nbFavorites = document.getElementsByClassName("js-favorite-count mt8")[0].innerHTML;
     if (nbFavorites === '') {
         nbFavorites = '0';
@@ -547,6 +549,7 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
     }
 
     a.innerHTML += "<span>\n" +
+        "&#9679; <b>Question votes :</b> " + nbUpvotesOnQuestion + "<br>\n" +
         "&#9679; <b>Favorites :</b> " + nbFavorites + "<br>\n" +
         "&#9679; <b>Views :</b> " + nbViews + "<br>\n" +
         "&#9679; <b>Asked :</b> " + asked + "<br>\n" +

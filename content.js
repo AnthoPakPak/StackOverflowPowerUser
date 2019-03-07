@@ -78,6 +78,10 @@ getUserPrefs(function() {
             }
         });
     }
+
+    if (userPrefs.stickyScrollOnUpvoteButtons) {
+        addStickyScrollToUpvoteButtons();
+    }
 });
 
 
@@ -628,6 +632,18 @@ function upvotePostAtIndex(index) {
 //endregion
 
 
+//region Sticky scrolling vote buttons
+
+function addStickyScrollToUpvoteButtons() {
+    let allUpvoteButtons = document.getElementsByClassName("js-voting-container");
+    for(var i = 0; i < allUpvoteButtons.length; i++)
+    {
+        allUpvoteButtons[i].style.position = "sticky";
+        allUpvoteButtons[i].style.top = "50px";
+    }
+}
+
+
 //region UserPrefs
 
 function getUserPrefs(callback) {
@@ -638,7 +654,8 @@ function getUserPrefs(callback) {
         showSidebarEnabled: true,
         navigationArrowKeysEnabled: true,
         autoExpandVotesCountEnabled: true,
-        hideStackOverflowLeftSidebar: true
+        hideStackOverflowLeftSidebar: true,
+        stickyScrollOnUpvoteButtons: true
     }, function(items) {
         userPrefs = items;
         callback();

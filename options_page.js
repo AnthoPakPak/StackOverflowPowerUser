@@ -10,6 +10,7 @@ window.onload = function() {
         var navigationArrowKeysEnabled = document.getElementById('navigationArrowKeysEnabled').checked;
         var autoExpandVotesCountEnabled = document.getElementById('autoExpandVotesCountEnabled').checked;
         var hideStackOverflowLeftSidebar = document.getElementById('hideStackOverflowLeftSidebar').checked;
+        var stickyScrollOnUpvoteButtons = document.getElementById('stickyScrollOnUpvoteButtons').checked;
         chrome.storage.sync.set({
             betterAnswerEnabled: betterAnswerEnabled,
             noAnswerEnabled: noAnswerEnabled,
@@ -17,7 +18,8 @@ window.onload = function() {
             showSidebarEnabled: showSidebarEnabled,
             navigationArrowKeysEnabled: navigationArrowKeysEnabled,
             autoExpandVotesCountEnabled: autoExpandVotesCountEnabled,
-            hideStackOverflowLeftSidebar: hideStackOverflowLeftSidebar
+            hideStackOverflowLeftSidebar: hideStackOverflowLeftSidebar,
+            stickyScrollOnUpvoteButtons: stickyScrollOnUpvoteButtons
         }, function() {
             // Update status to let user know options were saved.
             // var status = document.getElementById('status');
@@ -53,7 +55,8 @@ window.onload = function() {
             showSidebarEnabled: true,
             navigationArrowKeysEnabled: true,
             autoExpandVotesCountEnabled: true,
-            hideStackOverflowLeftSidebar: true
+            hideStackOverflowLeftSidebar: true,
+            stickyScrollOnUpvoteButtons: true
         }, function(items) {
             document.getElementById('betterAnswerEnabled').checked = items.betterAnswerEnabled;
             document.getElementById('noAnswerEnabled').checked = items.noAnswerEnabled;
@@ -62,6 +65,7 @@ window.onload = function() {
             document.getElementById('navigationArrowKeysEnabled').checked = items.navigationArrowKeysEnabled;
             document.getElementById('autoExpandVotesCountEnabled').checked = items.autoExpandVotesCountEnabled;
             document.getElementById('hideStackOverflowLeftSidebar').checked = items.hideStackOverflowLeftSidebar;
+            document.getElementById('stickyScrollOnUpvoteButtons').checked = items.stickyScrollOnUpvoteButtons;
         });
     }
     restore_options();

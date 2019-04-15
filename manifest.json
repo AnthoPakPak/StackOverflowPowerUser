@@ -8,7 +8,7 @@
 
   "content_scripts": [{
     "css": ["css/contentStyle.css", "css/floatingSidebar.css"],
-    "js": ["content.js"],
+    "js": ["js/main.js", "js/features/better_answer.js","js/features/expand_votes_counts.js", "js/features/floating_sidebar.js", "js/features/hiding_content.js", "js/features/misc_features.js", "js/features/no_answer.js", "js/features/scroll_through_answers.js"],
     "matches": ["https://stackoverflow.com/questions/*/*",
                 "https://superuser.com/questions/*/*",
                 "https://*.stackexchange.com/questions/*/*",
@@ -33,7 +33,7 @@
   },
 
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["js/background.js"],
     "persistent": false
   }
 

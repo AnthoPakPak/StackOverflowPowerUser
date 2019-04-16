@@ -93,6 +93,7 @@ function scrollToAnswerAtIndex(index, smooth) {
         }
 
         currentViewedPost = index;
+
         expandVotesCountOnIndex(index, false);
     }
 }

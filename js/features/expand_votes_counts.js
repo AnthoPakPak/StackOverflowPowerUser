@@ -1,3 +1,7 @@
+const timeBetweenTwoExpands = 1000;
+
+let expandVotesCountsTimer;
+
 function autoExpandVotesCounts() {
     if (userHasEnoughReputation()) { //avoid simulated clicks if user has less than 1000 rep
         // console.log("user has enough rep");
@@ -66,14 +70,15 @@ function addListenerOnVoteCounts() {
  * @param withDelay
  */
 function expandVotesCountOnIndex(index, withDelay) {
-    let delay = withDelay ? 1000 : 0;
-    // let delay = withDelay ? 1000 : Math.min(1000, new Date().getTime() - lastExpandedVotesCountDateTime);
-    if (!withDelay) {
+    let delay = withDelay ? timeBetweenTwoExpands : 0;
+
+    if (!withDelay) { //even if we want no delay, ensure that last request has been made more than 1second ago
+        cancelCurrentVotesCountsExpandationIfNeeded();
         let timeSinceLastExpandedVotesCount = new Date().getTime() - lastExpandedVotesCountDateTime;
-        delay = timeSinceLastExpandedVotesCount > 1200 ? 0 : 1200 - timeSinceLastExpandedVotesCount;
+        delay = timeSinceLastExpandedVotesCount > (timeBetweenTwoExpands+200) ? 0 : (timeBetweenTwoExpands+200) - timeSinceLastExpandedVotesCount; //add 0.2s to be sure to avoid limit
     }
-    // let delay = Math.min(1000, Math.max(0, new Date().getTime() - lastExpandedVotesCountDateTime));
-    setTimeout(function () {
+
+    expandVotesCountsTimer = setTimeout(function () {
         let votesCountArray = document.getElementsByClassName("js-vote-count");
 
         if (index < votesCountArray.length) {
@@ -154,4 +159,10 @@ function getColorAccordingToPourcent(pourcentValue){
     //value from 100 to 90
     var hue=((0.2-(1-(pourcentValue/100)))*500).toString(10);
     return ["hsl(",hue,",100%,50%)"].join("");
+}
+
+
+
+function cancelCurrentVotesCountsExpandationIfNeeded() {
+    clearTimeout(expandVotesCountsTimer);
 }

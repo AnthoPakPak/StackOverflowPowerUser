@@ -1,8 +1,7 @@
 # Chrome extension for Stack Overflow
 
-See post: https://blog.lateral.io/2016/04/create-chrome-extension-modify-websites-html-css/
-
-
+TODO when I'll have some time :
+- Show last visited page date using https://developers.chrome.com/extensions/history#method-search & https://stackoverflow.com/a/14211874/4894980
 
 Exemple SO url :
 

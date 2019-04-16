@@ -1,3 +1,5 @@
+const nbCellsInSidebar = 5;
+
 //region Answer already upvoted
 
 function checkIfIHaveAlreadyUpvotedAnAnswer() {
@@ -49,13 +51,12 @@ function showSidebarWithVotesCount() {
         //let span = document.createElement("SPAN"); // remettreForDetail
         //a.href = "#";
         li.addEventListener("click", function() {
-            var targetElement = event.target || event.srcElement;
+            let targetElement = event.target || event.srcElement;
             console.log(targetElement);
             scrollToAnswerAtIndex(i, true);
         });
 
-        let nbVotesAnswerI = parseInt((document.getElementsByClassName("js-vote-count")[i]).innerHTML);
-
+        let nbVotesAnswerI = (document.getElementsByClassName("js-vote-count")[i]).innerHTML;
         a.innerHTML = nbVotesAnswerI;
 
         //span.innerHTML = "100%"; //A remettre pour avoir le détail (remettreForDetail dans la fiche css)
@@ -85,18 +86,12 @@ function addLeftRightArrowsToUl(ul) {
 
     let leftArrow = ul.getElementsByClassName("arrow")[0];
     leftArrow.addEventListener("click", function() {
-        if (currentViewedPost > 0) {
-            currentViewedPost--;
-            scrollToAnswerAtIndex(currentViewedPost, true);
-        }
+        scrollToPreviousAnswer(true);
     });
 
     let rightArrow = ul.getElementsByClassName("arrow")[1];
     rightArrow.addEventListener("click", function() {
-        if (currentViewedPost < document.getElementsByClassName("answer").length) {
-            currentViewedPost++;
-            scrollToAnswerAtIndex(currentViewedPost, true);
-        }
+        scrollToNextAnswer(true);
     });
 }
 
@@ -138,7 +133,7 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
 
 
     li.addEventListener("click", function() {
-        var targetElement = event.target || event.srcElement;
+        let targetElement = event.target || event.srcElement;
 
         if (targetElement.id === 'upvoteQuestionButton') {
             upvoteQuestion();

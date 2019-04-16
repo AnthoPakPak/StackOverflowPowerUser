@@ -1,6 +1,8 @@
+const nbVotesCountsToAutoExpand = 4;
 const timeBetweenTwoExpands = 1000;
 
 let expandVotesCountsTimer;
+let lastExpandedVotesCountDateTime = 0;
 
 function autoExpandVotesCounts() {
     if (userHasEnoughReputation()) { //avoid simulated clicks if user has less than 1000 rep
@@ -47,7 +49,7 @@ function addListenerOnVoteCounts() {
 
             votesCountArray[i].getElementsByTagName("DIV")[2].style.color = "#CC0000"; //change downvotes count text color for a brighter red (I find the stock one a bit dark)
 
-            setPourcentageForIndex(i);
+            setPercentageForIndex(i);
 
             if (i+1 < nbVotesCountsToAutoExpand)
                 expandVotesCountOnIndex(i + 1, true);
@@ -95,7 +97,7 @@ function expandVotesCountOnIndex(index, withDelay) {
  * Méthode appelée après que le détail de votes ait été obtenu, qui donne le % de positif
  * @param index
  */
-function setPourcentageForIndex(index) {
+function setPercentageForIndex(index) {
     //console.log("index : " + index);
 
     let votesCountArray = document.getElementsByClassName("js-vote-count");
@@ -106,40 +108,40 @@ function setPourcentageForIndex(index) {
 
     let totalVotes = upVotes + downVotes;
 
-    let pourcentPositive = 0;
-    if (totalVotes > 0) pourcentPositive = Math.round(upVotes/totalVotes * 100);
+    let percentPositive = 0;
+    if (totalVotes > 0) percentPositive = Math.round(upVotes/totalVotes * 100);
 
-    //console.log(upVotes, downVotes, pourcentPositive);
+    //console.log(upVotes, downVotes, percentPositive);
 
     if (voteDiv.getElementsByClassName("circlePercent").length > 0) { //si l'élément existe déjà on l'update
         if (upVotes === 0 && downVotes === 0) { //s'il n'y a actuellement aucun votes
             voteDiv.getElementsByClassName("circlePercent")[0].textContent = "?";
             voteDiv.getElementsByClassName("circlePercent")[0].style.backgroundColor = "#3399ff"; //blue color
         } else {
-            voteDiv.getElementsByClassName("circlePercent")[0].textContent = pourcentPositive + "%";
-            voteDiv.getElementsByClassName("circlePercent")[0].style.backgroundColor = getColorAccordingToPourcent(pourcentPositive);
+            voteDiv.getElementsByClassName("circlePercent")[0].textContent = percentPositive + "%";
+            voteDiv.getElementsByClassName("circlePercent")[0].style.backgroundColor = getColorAccordingToPourcent(percentPositive);
         }
     } else { //sinon on le crée
-        let pourcentDiv = document.createElement("DIV");
-        pourcentDiv.className = "circlePercent";
+        let percentDiv = document.createElement("DIV");
+        percentDiv.className = "circlePercent";
 
         if (upVotes === 0 && downVotes === 0) { //s'il n'y a actuellement aucun votes
-            pourcentDiv.textContent = "?";
-            pourcentDiv.style.backgroundColor = "#3399ff"; //blue color
+            percentDiv.textContent = "?";
+            percentDiv.style.backgroundColor = "#3399ff"; //blue color
         } else {
-            pourcentDiv.textContent = pourcentPositive + "%";
-            pourcentDiv.style.backgroundColor = getColorAccordingToPourcent(pourcentPositive);
+            percentDiv.textContent = percentPositive + "%";
+            percentDiv.style.backgroundColor = getColorAccordingToPourcent(percentPositive);
         }
 
-        voteDiv.appendChild(pourcentDiv);
+        voteDiv.appendChild(percentDiv);
     }
 
 }
 
 
 /**
- * Méthode qui retourne du vert jusqu'au rouge. Les valeurs actuelles retournent vert pour 100 et rouge pour 90
- * Fiddle : http://jsfiddle.net/jongobar/sNKWK/
+ * Méthode qui retourne du vert jusqu'au rouge. Les valeurs actuelles retournent vert pour 100 et rouge pour 80
+ * Inspire by this Fiddle : http://jsfiddle.net/jongobar/sNKWK/
  * @param pourcentValue
  * @returns {string}
  */
@@ -157,7 +159,7 @@ function getColorAccordingToPourcent(pourcentValue){
         pourcentValue = 80;
 
     //value from 100 to 90
-    var hue=((0.2-(1-(pourcentValue/100)))*500).toString(10);
+    let hue=((0.2-(1-(pourcentValue/100)))*500).toString(10);
     return ["hsl(",hue,",100%,50%)"].join("");
 }
 

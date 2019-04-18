@@ -8,7 +8,15 @@
 
   "content_scripts": [{
     "css": ["css/content_style.css", "css/floating_sidebar.css"],
-    "js": ["js/main.js", "js/features/better_answer.js","js/features/expand_votes_counts.js", "js/features/floating_sidebar.js", "js/features/hiding_content.js", "js/features/misc_features.js", "js/features/no_answer.js", "js/features/navigate_through_answers.js", "js/helper.js"],
+    "js": ["js/main.js",
+           "js/helper.js",
+           "js/features/better_answer.js",
+           "js/features/expand_votes_counts.js",
+           "js/features/floating_sidebar.js",
+           "js/features/hiding_content.js",
+           "js/features/misc_features.js",
+           "js/features/no_answer.js",
+           "js/features/navigate_through_answers.js"],
     "matches": ["https://stackoverflow.com/questions/*/*",
                 "https://superuser.com/questions/*/*",
                 "https://*.stackexchange.com/questions/*/*",
@@ -21,20 +29,19 @@
   }],
 
   "web_accessible_resources": [
-    "images/*"
+    "img/*"
   ],
 
   "permissions": ["storage"],
   "options_page": "options_page.html",
   "icons": {
-    "128": "icons/icon128.png",
-    "48": "icons/icon48.png",
-    "16": "icons/icon16.png"
+    "128": "img/icons/icon_128x128.png",
+    "48": "img/icons/icon_48x48.png",
+    "16": "img/icons/icon_16x16.png"
   },
 
   "background": {
     "scripts": ["js/background.js"],
     "persistent": false
   }
-
 }

@@ -1,5 +1,5 @@
 .social {
-    /*width: 200px; A remettre : readdForDetails*/
+    /*width: 200px; reAddForDetails*/
     width: 70px;
     height: 220px;
     position: fixed;
@@ -102,6 +102,11 @@
 }
 
 
+/*region Arrows*/
+
+/*NOTE : CSS for arrows is a bit tricky. I couldn't find a cleaner way to do it.
+It has the known bug that if you zoom in the SO page (using ctrl/cmd + +) they will be misplaced*/
+
 .arrow {
     width:4px !important;
     display:inline !important;
@@ -124,6 +129,7 @@
     -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 
+/*endregion*/
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */

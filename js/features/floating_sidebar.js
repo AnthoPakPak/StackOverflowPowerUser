@@ -15,7 +15,7 @@ function setupSidebarWithVotesCounts() {
 
 /**
  * Generates a floating sidebar with votes counts. Clicking on cells will scroll to the answer.
- * This html generation is not so great, it could be improved... It uses CSS rules from `floatingSidebar.css`.
+ * This html generation is not so great, it could be improved... It uses CSS rules from `floating_sidebar.css`.
  *
  * Original sidebar taken from : https://codepen.io/anon/pen/KodazE
  */
@@ -30,7 +30,7 @@ function showSidebarWithVotesCounts() {
     for (let i = 1; i < votesCountArray.length;i++) { //start to 1 to avoid question
         let li = document.createElement("LI");
         let a = document.createElement("A");
-        //let span = document.createElement("SPAN"); // re-add if we want details (readdForDetails)
+        //let span = document.createElement("SPAN"); // re-add if we want details (reAddForDetails)
         //a.href = "#";
         li.addEventListener("click", function() {
             let targetElement = event.target || event.srcElement;
@@ -41,7 +41,7 @@ function showSidebarWithVotesCounts() {
         let nbVotesAnswerI = (document.getElementsByClassName("js-vote-count")[i]).innerHTML;
         a.innerHTML = nbVotesAnswerI;
 
-        //span.innerHTML = "100%"; // re-add if we want details (search readdForDetails in CSS file)
+        //span.innerHTML = "100%"; // re-add if we want details (search reAddForDetails in CSS file)
         //a.appendChild(span);
 
         li.appendChild(a);
@@ -58,7 +58,7 @@ function showSidebarWithVotesCounts() {
 
 
 /**
- * Add the nbAnswers cell into sidebar, by adding an li to the passed ul. It uses CSS rules from `floatingSidebar.css`.
+ * Add the nbAnswers cell into sidebar, by adding an li to the passed ul. It uses CSS rules from `floating_sidebar.css`.
  * This html generation is not so great, it could be improved...
  * @param ul the list in which the li will be added
  * @param nbAnswers nbAnswers to showcase in this li
@@ -115,7 +115,7 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
 
 
 /**
- * Add the <- and -> arrows on sidebar bottom. It uses CSS rules from `floatingSidebar.css`.
+ * Add the <- and -> arrows on sidebar bottom. It uses CSS rules from `floating_sidebar.css`.
  * This html generation is not so great, it could be improved...
  * @param ul the list in which the arrows will be added
  */

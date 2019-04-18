@@ -7,7 +7,7 @@
   "description": "Stop wasting time while programming ! Adds many options to save time when searching for solutions on StackOverflow",
 
   "content_scripts": [{
-    "css": ["css/contentStyle.css", "css/floatingSidebar.css"],
+    "css": ["css/content_style.css", "css/floating_sidebar.css"],
     "js": ["js/main.js", "js/features/better_answer.js","js/features/expand_votes_counts.js", "js/features/floating_sidebar.js", "js/features/hiding_content.js", "js/features/misc_features.js", "js/features/no_answer.js", "js/features/navigate_through_answers.js", "js/helper.js"],
     "matches": ["https://stackoverflow.com/questions/*/*",
                 "https://superuser.com/questions/*/*",

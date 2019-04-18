@@ -1,4 +1,6 @@
-//Posts IDs
+/**
+ * Post IDs
+ */
 const questionId = 0;
 const acceptedAnswerId = 1; //it could also be the first answer if there isn't any accepted answer
 const nextAnswerId = 2;
@@ -6,7 +8,9 @@ const nextAnswerId = 2;
 let userPrefs = {};
 
 
-//get userPrefs then execute the code
+/**
+ * Get the user preferences then execute the code to enable each feature individually.
+ */
 getUserPrefs(function() {
     //Avoid executing code on other SE pages, such as profile, Questions lists, etc
     if (!currentStackOverflowPageIsAQuestionAnswerPage()) {
@@ -15,28 +19,19 @@ getUserPrefs(function() {
 
 
     if (userPrefs.noAnswerEnabled) {
-        if (!questionHasAlmostOneAnswer()) {
-            showNoAnswerImageOnQuestion();
-        }
+        showNoAnswerImageOnQuestionIfNeeded();
     }
 
     if (userPrefs.betterAnswerEnabled) {
-        if (questionHasAlmostOneAnswer()) {
-            if (questionHasAccepedAnswer()) {
-                checkForBetterAnswer();
-            }
-        }
+        showBetterAnswerImageOnAcceptedAnswerIfNeeded();
     }
 
-    if (userPrefs.autoScrollFirstAnswerEnabled && questionHasAlmostOneAnswer()) {
-        //currently it just scrolls to first answer (not the best one)
+    if (userPrefs.autoScrollFirstAnswerEnabled) {
         scrollToFirstAnswerOnLoad();
     }
 
     if (userPrefs.showSidebarEnabled) {
-        showSidebarWithVotesCount();
-        checkIfIHaveAlreadyUpvotedAnAnswer();
-        addListenerOnUpvoteButtons();
+        setupSidebarWithVotesCounts();
     }
 
     if (userPrefs.autoExpandVotesCountEnabled) {
@@ -44,7 +39,7 @@ getUserPrefs(function() {
     }
 
     if (!userPrefs.hideStackOverflowLeftSidebar) {
-        document.getElementById("left-sidebar").style.display = 'block'; //I've hidden it by default in CSS, to not see it blink. If feature is disabled, we set it display property back to block
+        unhideLeftSidebar();
     }
 
     if (userPrefs.navigationArrowKeysEnabled) {
@@ -61,8 +56,13 @@ getUserPrefs(function() {
 });
 
 
+
 //region UserPrefs
 
+/**
+ * Fetch extension settings from Chrome storage.
+ * @param callback called when preferences are fetched
+ */
 function getUserPrefs(callback) {
     chrome.storage.sync.get({
         betterAnswerEnabled: true,

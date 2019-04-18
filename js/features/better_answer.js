@@ -1,7 +1,25 @@
+/**
+ * Check if there are answers, and if so, check if there is a better answer than the accepted one.
+ *
+ * Fun fact : this feature is the one that lead me to create this extension, that has now far more features ! Initially, the extension was named StackOverflow Better Answer :D
+ */
+function showBetterAnswerImageOnAcceptedAnswerIfNeeded() {
+    if (questionHasAlmostOneAnswer()) {
+        if (questionHasAcceptedAnswer()) {
+            checkForBetterAnswer();
+        }
+    }
+}
+
+
+/**
+ * Check if the answer below the accepted answer has more votes than the accepted one.
+ * If so, it will add an arrow-down image to indicate that the answer below can be better than the accepted one.
+ */
 function checkForBetterAnswer() {
-    if (document.getElementsByClassName("answer").length >= 2) { //s'il y a au moins 2 réponses
-        let nbVotesAcceptedAnswer = parseInt((document.getElementsByClassName("js-vote-count")[acceptedAnswerId]).innerHTML);
-        let nbVotesNextAnswer = parseInt((document.getElementsByClassName("js-vote-count")[nextAnswerId]).innerHTML);
+    if (getNbAnswers() >= 2) { //if there's at least 2 answers
+        let nbVotesAcceptedAnswer = getNbVotesForAnswerAtIndex(acceptedAnswerId);
+        let nbVotesNextAnswer = getNbVotesForAnswerAtIndex(nextAnswerId);
 
         if (nbVotesNextAnswer > nbVotesAcceptedAnswer) {
             //console.log("There's a better answer !");
@@ -9,11 +27,14 @@ function checkForBetterAnswer() {
         } else {
             //console.log("No better answer…");
         }
-    } else {
-        //console.log("Not enough answers");
     }
 }
 
+
+/**
+ * Add the arrow-down image next to the accepted answer to indicate that the answer below can be better than this one.
+ * Clicking the arrow will scroll to the potentially-better answer.
+ */
 function showArrowDownImageOnAcceptedAnswer() {
     let acceptedAnswerVoteDiv = document.getElementsByClassName("js-voting-container")[acceptedAnswerId];
 

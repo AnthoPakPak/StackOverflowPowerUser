@@ -3,7 +3,10 @@ window.onload = function() {
     document.getElementById('saveButton').addEventListener('click', saveSettings);
 };
 
-// Saves options to chrome.storage
+
+/**
+ * Saves settings to `chrome.storage`
+ */
 function saveSettings() {
     let betterAnswerEnabled = document.getElementById('betterAnswerEnabled').checked;
     let noAnswerEnabled = document.getElementById('noAnswerEnabled').checked;
@@ -24,11 +27,14 @@ function saveSettings() {
         stickyScrollOnUpvoteButtons: stickyScrollOnUpvoteButtons
     }, function() {
         showSaveConfirmation();
+        return false;
     });
 }
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
+
+/**
+ * Restore previous settings that are stored in `chrome.storage`
+ */
 function restoreSettings() {
     chrome.storage.sync.get({
         betterAnswerEnabled: true,
@@ -51,11 +57,14 @@ function restoreSettings() {
     });
 }
 
+
+/**
+ * Quickly show a Saved confirmation text
+ */
 function showSaveConfirmation() {
     document.getElementById('confirmation').innerHTML = "Options saved !";
     let x = setInterval(function() {
         document.getElementById('confirmation').innerHTML = "";
         clearInterval(x);
     }, 2000);
-    return false;
 }

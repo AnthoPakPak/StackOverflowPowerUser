@@ -1,20 +1,22 @@
-const nbVotesCountsToAutoExpand = 4;
-const timeBetweenTwoExpands = 1000;
+const nbVotesCountsToAutoExpand = 4; //the number of votes counts that will be automatically expanded on page load. Do not set a high value here to not overload SO servers.
+const timeBetweenTwoExpands = 1000; //the delay we need to wait between each expand to avoid reaching SO limit
 
 let expandVotesCountsTimer;
 let lastExpandedVotesCountDateTime = 0;
 
-function autoExpandVotesCounts() {
-    if (userHasEnoughReputation()) { //avoid simulated clicks if user has less than 1000 rep
-        // console.log("user has enough rep");
-        setTimeout(function () {
-            addListenerOnVoteCounts();
 
-            expandVotesCountOnIndex(0, true);
-        }, 1000);
-    } else {
-        // console.log("user hasn't got enough rep or isn't logged in");
+function autoExpandVotesCounts() {
+    if (!userHasEnoughReputation()) { //don't run this if user has less than 1000 rep
+        //console.log("user hasn't got enough rep or isn't logged in");
+        return;
     }
+
+    //wait 1sec after page load, then start auto expanding
+    setTimeout(function () {
+        addListenerOnVoteCounts();
+
+        expandVotesCountOnIndex(0, true);
+    }, 1000);
 }
 
 
@@ -22,9 +24,9 @@ function autoExpandVotesCounts() {
  * Verify that user has more than 1000 reputation points
  */
 function userHasEnoughReputation() {
-    if (document.getElementsByClassName("-rep js-header-rep").length > 0) { //user is logged in
-        let reputationString = document.getElementsByClassName("-rep js-header-rep")[0].innerHTML; //will have this kind of format, 342 | 1,872 | 13k
-        console.log("rep string " + reputationString);
+    if (userIsLoggedIn()) { //user is logged in
+        let reputationString = getReputationString(); //will have this kind of format : 342 | 1,872 | 13k
+        //console.log("rep string " + reputationString);
         if (reputationString.indexOf(",") !== -1 || reputationString.indexOf("k") !== -1) {
             return true;
         }
@@ -34,17 +36,22 @@ function userHasEnoughReputation() {
 }
 
 
-
+/**
+ * Add a listener on each votes counts so that it observe the end of the ajax call that is made to fetch the votes details.
+ * Every time a votes details is fetch (basically after clicking a vote number or with auto-expand votes counts feature), the following will be done :
+ *      - Show the percentage badge of the answer
+ *      - Expand the next votes count if current expanded answer is below `nbVotesCountsToAutoExpand`
+ *      - Change color of downvote text as I find it a bit dark
+ */
 function addListenerOnVoteCounts() {
     let votesCountArray = document.getElementsByClassName("js-vote-count");
 
-    for (let i = 0; i <votesCountArray.length;i++) {
+    for (let i = 0; i < votesCountArray.length; i++) {
         //wait until finish before launching the next fetch
         MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
         let observer = new MutationObserver(function(mutations, observer) {
-            //ICI on a reçu les votes details
-            //console.log(mutations, observer);
-            if (!votesCountArray[i].getElementsByTagName("DIV")[2]) //pour éviter les undefined
+            //here, the votes details are available
+            if (!votesCountArray[i].getElementsByTagName("DIV")[2]) //to avoid undefined
                 return;
 
             votesCountArray[i].getElementsByTagName("DIV")[2].style.color = "#CC0000"; //change downvotes count text color for a brighter red (I find the stock one a bit dark)
@@ -65,11 +72,10 @@ function addListenerOnVoteCounts() {
 
 
 /**
- * Méthode récursive, dès qu'on a fetch le détail des votes de tel index,
- * on fait l'index suivant.
- * Obligé de faire ça car SO n'autorise pas les batchs requests sur le vote count
- * @param index
- * @param withDelay
+ * Expand votes count on an answer. This is normally done clicking the vote number on SO (you will need more than 1000 reputation to have the privilege to do this).
+ * There must be 1 second before each expand to avoid reaching SO limit. That's why listeners are set on votes counts (see `addListenerOnVoteCounts`) so that it will wait the end of the fetch before fetching the next one.
+ * @param index index of the votes count to expand
+ * @param withDelay should it be expanded waiting 1sec or immediately ?
  */
 function expandVotesCountOnIndex(index, withDelay) {
     let delay = withDelay ? timeBetweenTwoExpands : 0;
@@ -88,18 +94,17 @@ function expandVotesCountOnIndex(index, withDelay) {
 
             lastExpandedVotesCountDateTime = new Date().getTime();
         }
-
     }, delay);
 }
 
 
 /**
- * Méthode appelée après que le détail de votes ait été obtenu, qui donne le % de positif
- * @param index
+ * Once the votes count detail is fetch, this method is called to add the percentage badge on the answer.
+ * It will inform on the validity of an answer by giving the % of positive votes.
+ * If an answer has too much downvotes, the badge color will be red.
+ * @param index index of the vote count
  */
 function setPercentageForIndex(index) {
-    //console.log("index : " + index);
-
     let votesCountArray = document.getElementsByClassName("js-vote-count");
     let voteDiv = document.getElementsByClassName("js-voting-container")[index];
 
@@ -113,19 +118,19 @@ function setPercentageForIndex(index) {
 
     //console.log(upVotes, downVotes, percentPositive);
 
-    if (voteDiv.getElementsByClassName("circlePercent").length > 0) { //si l'élément existe déjà on l'update
-        if (upVotes === 0 && downVotes === 0) { //s'il n'y a actuellement aucun votes
+    if (voteDiv.getElementsByClassName("circlePercent").length > 0) { //if the badge is already created we update it
+        if (upVotes === 0 && downVotes === 0) { //if there are currently no votes (this is different from having +1/-1)
             voteDiv.getElementsByClassName("circlePercent")[0].textContent = "?";
             voteDiv.getElementsByClassName("circlePercent")[0].style.backgroundColor = "#3399ff"; //blue color
         } else {
             voteDiv.getElementsByClassName("circlePercent")[0].textContent = percentPositive + "%";
             voteDiv.getElementsByClassName("circlePercent")[0].style.backgroundColor = getColorAccordingToPourcent(percentPositive);
         }
-    } else { //sinon on le crée
+    } else { //instead we create the badge
         let percentDiv = document.createElement("DIV");
         percentDiv.className = "circlePercent";
 
-        if (upVotes === 0 && downVotes === 0) { //s'il n'y a actuellement aucun votes
+        if (upVotes === 0 && downVotes === 0) { //if there are currently no votes (this is different from having +1/-1)
             percentDiv.textContent = "?";
             percentDiv.style.backgroundColor = "#3399ff"; //blue color
         } else {
@@ -135,36 +140,42 @@ function setPercentageForIndex(index) {
 
         voteDiv.appendChild(percentDiv);
     }
-
 }
 
 
 /**
- * Méthode qui retourne du vert jusqu'au rouge. Les valeurs actuelles retournent vert pour 100 et rouge pour 80
+ * Return a color going from green to red from a percentage value.
+ * 100% is green, 80% is red.
+ * I've arbitrary chosen 80% to be red as I think an answer having 20% of downvotes is a bad one.
+ *
  * Inspire by this Fiddle : http://jsfiddle.net/jongobar/sNKWK/
  * @param pourcentValue
  * @returns {string}
  */
 function getColorAccordingToPourcent(pourcentValue){
+    if (pourcentValue < 80) //we don't want to be below 80 as 80 is already red
+        pourcentValue = 80;
+
+    //value from 100 to 80
+    let hue=((0.2-(1-(pourcentValue/100)))*500).toString(10);
+    return ["hsl(",hue,",100%,50%)"].join("");
+
+
+    //I let the 90% version below for the record, as working with these values is a bit tricky.
     //version 90% min
-    // if (pourcentValue < 90)  //car à 90 c'est déjà rouge
+    // if (pourcentValue < 90)
     //     pourcentValue = 90;
     //
     // //value from 100 to 90
     // var hue=((0.1-(1-(pourcentValue/100)))*1000).toString(10);
     // return ["hsl(",hue,",100%,50%)"].join("");
-
-    //version 80% min
-    if (pourcentValue < 80)  //car à 80 c'est déjà rouge
-        pourcentValue = 80;
-
-    //value from 100 to 90
-    let hue=((0.2-(1-(pourcentValue/100)))*500).toString(10);
-    return ["hsl(",hue,",100%,50%)"].join("");
 }
 
 
-
+/**
+ * It will cancel currently queued votes counts expand. Useful when navigating through answers with arrow keys quickly.
+ * Without it we often reach the SO limit of one fetch every 1sec.
+ */
 function cancelCurrentVotesCountsExpandationIfNeeded() {
     clearTimeout(expandVotesCountsTimer);
 }

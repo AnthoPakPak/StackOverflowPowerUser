@@ -1,3 +1,16 @@
+/**
+ * Check if question hasn't got answers, and show an indicator accordingly.
+ */
+function showNoAnswerImageOnQuestionIfNeeded() {
+    if (!questionHasAlmostOneAnswer()) {
+        showNoAnswerImageOnQuestion();
+    }
+}
+
+
+/**
+ * Show a really-disappointed image on the SO question that hasn't got any answers.
+ */
 function showNoAnswerImageOnQuestion() {
     let questionVoteDiv = document.getElementsByClassName("js-voting-container")[questionId];
 

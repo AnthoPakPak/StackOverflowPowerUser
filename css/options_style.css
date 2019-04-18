@@ -24,3 +24,11 @@ h2 {
     margin-top: 40px !important;
     margin-bottom: 15px !important;
 }
+
+.newFeature {
+    color: red;
+}
+
+#confirmation {
+    color: red;
+}

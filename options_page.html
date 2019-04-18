@@ -59,11 +59,16 @@
 			<input type="checkbox" id="autoExpandVotesCountEnabled">
 			<label for="autoExpandVotesCountEnabled">Auto expand votes count & Show answer score (in percent)</label>
             <br/><em><strong>You need to have at least 1000 reputation on StackOverflow for this feature to work.</strong> When arriving on Stack Overflow page, it automatically expand votes count (upvotes/downvotes) and shows the score of the answer (in percent).</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
-			<br/><br/>
+            <br/><br/>
 
             <input type="checkbox" id="stickyScrollOnUpvoteButtons">
-            <label for="stickyScrollOnUpvoteButtons">Sticky scroll on vote buttons</label> <span style="color:red">NEW !</span>
+            <label for="stickyScrollOnUpvoteButtons">Sticky scroll on vote buttons</label>
             <br/><em>Make vote buttons scroll so that they are still visible even on long posts.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+            <br/><br/>
+
+            <input type="checkbox" id="expandAllCommentsOnCtrlfEnabled">
+            <label for="expandAllCommentsOnCtrlfEnabled">Expand all comments automatically when performing CMD/Ctrl + F</label> <span class="newFeature">NEW !</span>
+            <br/><em>Automatically expand all "show X more comments" when you use CMD/Ctrl + F to search in page. This way you ensure that you're not missing any result.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
 
 
             <h2>Hide elements</h2>
@@ -75,7 +80,7 @@
 
 			<br/><br/><br/>
 			<input type="button" id="saveButton" value="Save"/>
-			<span id="confirmation" style="color:red"></span>
+			<span id="confirmation"></span>
 
 		</form>
 

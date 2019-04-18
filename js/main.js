@@ -47,7 +47,7 @@ getUserPrefs(function() {
     }
 
     if (userPrefs.expandAllCommentsOnCtrlfEnabled) {
-        document.addEventListener("keydown", expandAllCommentsOnCtrlF, false); //TODO create the setting
+        document.addEventListener("keydown", expandAllCommentsOnCtrlF, false);
     }
 
     if (userPrefs.stickyScrollOnUpvoteButtons) {

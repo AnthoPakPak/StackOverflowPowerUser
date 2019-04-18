@@ -16,6 +16,7 @@ function saveSettings() {
     let autoExpandVotesCountEnabled = document.getElementById('autoExpandVotesCountEnabled').checked;
     let hideStackOverflowLeftSidebar = document.getElementById('hideStackOverflowLeftSidebar').checked;
     let stickyScrollOnUpvoteButtons = document.getElementById('stickyScrollOnUpvoteButtons').checked;
+    let expandAllCommentsOnCtrlfEnabled = document.getElementById('expandAllCommentsOnCtrlfEnabled').checked;
     chrome.storage.sync.set({
         betterAnswerEnabled: betterAnswerEnabled,
         noAnswerEnabled: noAnswerEnabled,
@@ -24,7 +25,8 @@ function saveSettings() {
         navigationArrowKeysEnabled: navigationArrowKeysEnabled,
         autoExpandVotesCountEnabled: autoExpandVotesCountEnabled,
         hideStackOverflowLeftSidebar: hideStackOverflowLeftSidebar,
-        stickyScrollOnUpvoteButtons: stickyScrollOnUpvoteButtons
+        stickyScrollOnUpvoteButtons: stickyScrollOnUpvoteButtons,
+        expandAllCommentsOnCtrlfEnabled: expandAllCommentsOnCtrlfEnabled
     }, function() {
         showSaveConfirmation();
         return false;
@@ -44,7 +46,8 @@ function restoreSettings() {
         navigationArrowKeysEnabled: true,
         autoExpandVotesCountEnabled: true,
         hideStackOverflowLeftSidebar: true,
-        stickyScrollOnUpvoteButtons: true
+        stickyScrollOnUpvoteButtons: true,
+        expandAllCommentsOnCtrlfEnabled: true
     }, function(items) {
         document.getElementById('betterAnswerEnabled').checked = items.betterAnswerEnabled;
         document.getElementById('noAnswerEnabled').checked = items.noAnswerEnabled;
@@ -54,6 +57,7 @@ function restoreSettings() {
         document.getElementById('autoExpandVotesCountEnabled').checked = items.autoExpandVotesCountEnabled;
         document.getElementById('hideStackOverflowLeftSidebar').checked = items.hideStackOverflowLeftSidebar;
         document.getElementById('stickyScrollOnUpvoteButtons').checked = items.stickyScrollOnUpvoteButtons;
+        document.getElementById('expandAllCommentsOnCtrlfEnabled').checked = items.expandAllCommentsOnCtrlfEnabled;
     });
 }
 

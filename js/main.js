@@ -17,41 +17,62 @@ getUserPrefs(function() {
         return;
     }
 
-
-    if (userPrefs.noAnswerEnabled) {
-        showNoAnswerImageOnQuestionIfNeeded();
-    }
-
-    if (userPrefs.betterAnswerEnabled) {
-        showBetterAnswerImageOnAcceptedAnswerIfNeeded();
-    }
-
-    if (userPrefs.autoScrollFirstAnswerEnabled) {
-        scrollToFirstAnswerOnLoad();
-    }
+    //SIDEBAR
 
     if (userPrefs.showSidebarEnabled) {
         setupSidebarWithVotesCounts();
     }
 
-    if (userPrefs.autoExpandVotesCountEnabled) {
-        autoExpandVotesCounts();
+
+    //INDICATORS
+
+    if (userPrefs.betterAnswerEnabled) {
+        showBetterAnswerImageOnAcceptedAnswerIfNeeded();
     }
 
-    if (!userPrefs.hideStackOverflowLeftSidebar) {
-        unhideLeftSidebar();
+    if (userPrefs.noAnswerEnabled) {
+        showNoAnswerImageOnQuestionIfNeeded();
+    }
+
+
+    //NAVIGATION
+
+    if (userPrefs.autoScrollFirstAnswerEnabled) {
+        scrollToFirstAnswerOnLoad();
     }
 
     if (userPrefs.navigationArrowKeysEnabled) {
         setupArrowsKeystrokesListeners();
     }
 
-    if (userPrefs.expandAllCommentsOnCtrlfEnabled) {
-        document.addEventListener("keydown", expandAllCommentsOnCtrlF, false);
+
+    //MISCELLANEOUS
+
+    if (userPrefs.autoExpandVotesCountEnabled) {
+        autoExpandVotesCounts();
     }
 
     if (userPrefs.stickyScrollOnUpvoteButtons) {
         addStickyScrollToUpvoteButtons();
+    }
+
+    if (userPrefs.expandAllCommentsOnCtrlfEnabled) {
+        document.addEventListener("keydown", expandAllCommentsOnCtrlF, false);
+    }
+
+
+    //HIDE ELEMENTS
+
+    if (!userPrefs.hideStackOverflowLeftSidebar) {
+        unhideLeftSidebar();
+    }
+
+    if (userPrefs.hideHotNetworkQuestions) {
+        hideHotNetworkQuestions();
+    }
+
+    if (userPrefs.hideMetaPosts) {
+        hideMetaPosts();
     }
 });
 
@@ -73,7 +94,9 @@ function getUserPrefs(callback) {
         autoExpandVotesCountEnabled: true,
         hideStackOverflowLeftSidebar: true,
         stickyScrollOnUpvoteButtons: true,
-        expandAllCommentsOnCtrlfEnabled: true
+        expandAllCommentsOnCtrlfEnabled: true,
+        hideHotNetworkQuestions: false,
+        hideMetaPosts: false
     }, function(items) {
         userPrefs = items;
         callback();

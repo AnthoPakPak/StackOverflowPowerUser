@@ -4,147 +4,165 @@
     <meta charset="UTF-8">
     <title>StackOverflow Power User Options</title>
 
-	<link rel="stylesheet" href="css/options_style.css"/>
-	<link rel="stylesheet" href="css/chrome_shared.css"/>
+    <link rel="stylesheet" href="css/options_style.css"/>
+    <link rel="stylesheet" href="css/chrome_shared.css"/>
 
-	<script type="text/javascript" src="js/options_page.js"></script>
+    <script type="text/javascript" src="js/options_page.js"></script>
 </head>
 
 <body>
-	<div class="main-container">
-		<header>
-			<img src="img/icons/icon_48x48.png">
-			StackOverflow Power User
-            <br/>
-            <em>Stop wasting time while programming !</em>
+<div class="main-container">
+    <header>
+        <img src="img/icons/icon_48x48.png">
+        StackOverflow Power User
+        <br/>
+        <em>Stop wasting time while programming !</em>
 
-        </header>
+    </header>
 
-		<h1>Settings</h1>
-		<hr/>
-		<form id="settingsForm">
-            <h2>Sidebar</h2>
+    <h1>Settings</h1>
+    <hr/>
+    <form id="settingsForm">
+        <h2>Sidebar</h2>
 
-            <input type="checkbox" id="showSidebarEnabled">
-            <label for="showSidebarEnabled">Show answers sidebar (with vote counts)</label>
-            <br/><em>Shows a floating sidebar on the left that shows score of first 5 answers, as sometimes it can be interesting to read other well upvoted answers. It will also inform you if you have already upvoted an answer previously on this page. You can also hover the first cell to get additional information about the current page.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
-
-
-            <h2>Indicators</h2>
-
-            <input type="checkbox" id="betterAnswerEnabled">
-            <label for="betterAnswerEnabled">Show indicator when there's a better answer than the accepted one</label>
-            <br/><em>If a question has a better answer than the accepted one, it shows an clickable arrow to easily notice it and avoid wasting time.</em> (<a href="https://stackoverflow.com/questions/6131205/iphone-how-to-find-topmost-view-controller" target="_blank">Try it</a>)
-            <br/><br/>
-
-			<input type="checkbox" id="noAnswerEnabled">
-			<label for="noAnswerEnabled">Show indicator when there isn't any answer to the question</label>
-			<br/><em>If a question has no answer, it shows a disappointed smiley to easily notice it and avoid wasting time reading the question.</em> (<a href="https://stackoverflow.com/questions/38728331/uibarbuttonitems-in-uinavigationbar-are-sticking-to-the-borders" target="_blank">Try it</a>)
+        <input type="checkbox" id="showSidebarEnabled">
+        <label for="showSidebarEnabled">Show answers sidebar (with vote counts)</label>
+        <br/><em>Shows a floating sidebar on the left that shows score of first 5 answers, as sometimes it can be
+        interesting to read other well upvoted answers. It will also inform you if you have already upvoted an answer
+        previously on this page. You can also hover the first cell to get additional information about the current
+        page.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
 
 
-            <h2>Navigation</h2>
+        <h2>Indicators</h2>
 
-            <input type="checkbox" id="autoScrollFirstAnswerEnabled">
-            <label for="autoScrollFirstAnswerEnabled">Auto-scroll to first answer</label>
-            <br/><em>Automatically scroll to the first answer, as you usually don't have to read the question.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
-            <br/><br/>
+        <input type="checkbox" id="betterAnswerEnabled">
+        <label for="betterAnswerEnabled">Show indicator when there's a better answer than the accepted one</label>
+        <br/><em>If a question has a better answer than the accepted one, it shows an clickable arrow to easily notice
+        it and avoid wasting time.</em> (<a href="https://stackoverflow.com/questions/6131205/iphone-how-to-find-topmost-view-controller" target="_blank">Try it</a>)
+        <br/><br/>
 
-            <input type="checkbox" id="navigationArrowKeysEnabled">
-            <label for="navigationArrowKeysEnabled">Navigate through answers with keyboard arrow keys (left/right)</label>
-            <br/><em>Give the ability to navigate through all answers without having to remove your hands from keyboard.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
-
-
-            <h2>Miscellaneous</h2>
-
-			<input type="checkbox" id="autoExpandVotesCountEnabled">
-			<label for="autoExpandVotesCountEnabled">Auto expand votes count & Show answer score (in percent)</label>
-            <br/><em><strong>You need to have at least 1000 reputation on StackOverflow for this feature to work.</strong> When arriving on Stack Overflow page, it automatically expand votes count (upvotes/downvotes) and shows the score of the answer (in percent).</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
-            <br/><br/>
-
-            <input type="checkbox" id="stickyScrollOnUpvoteButtons">
-            <label for="stickyScrollOnUpvoteButtons">Sticky scroll on vote buttons</label>
-            <br/><em>Make vote buttons scroll so that they are still visible even on long posts.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
-            <br/><br/>
-
-            <input type="checkbox" id="expandAllCommentsOnCtrlfEnabled">
-            <label for="expandAllCommentsOnCtrlfEnabled">Expand all comments automatically when performing CMD/Ctrl + F</label> <span class="newFeature">NEW !</span>
-            <br/><em>Automatically expand all "show X more comments" when you use CMD/Ctrl + F to search in page. This way you ensure that you're not missing any result.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+        <input type="checkbox" id="noAnswerEnabled">
+        <label for="noAnswerEnabled">Show indicator when there isn't any answer to the question</label>
+        <br/><em>If a question has no answer, it shows a disappointed smiley to easily notice it and avoid wasting time
+        reading the question.</em> (<a href="https://stackoverflow.com/questions/38728331/uibarbuttonitems-in-uinavigationbar-are-sticking-to-the-borders" target="_blank">Try it</a>)
 
 
-            <h2>Hide elements</h2>
+        <h2>Navigation</h2>
 
-            <input type="checkbox" id="hideStackOverflowLeftSidebar">
-            <label for="hideStackOverflowLeftSidebar">Hide the useless StackOverflow left sidebar</label>
-            <br/><em>Just hide the new sidebar with "Home", "Tags", "Users", "Jobs", that may be useless for most users and takes too much space.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
-            <br/><br/>
+        <input type="checkbox" id="autoScrollFirstAnswerEnabled">
+        <label for="autoScrollFirstAnswerEnabled">Auto-scroll to first answer</label>
+        <br/><em>Automatically scroll to the first answer, as you usually don't have to read the question.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+        <br/><br/>
 
-            <input type="checkbox" id="hideHotNetworkQuestions">
-            <label for="hideHotNetworkQuestions">Hide the "Hot Network Questions" block from right sidebar</label> <span class="newFeature">NEW !</span>
-            <br/><em>Just hide this block to prevent distraction.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
-            <br/><br/>
-
-            <input type="checkbox" id="hideMetaPosts">
-            <label for="hideMetaPosts">Hide the "Featured on Meta" & "Hot Meta posts" block from right sidebar</label> <span class="newFeature">NEW !</span>
-            <br/><em>Just hide this block to prevent distraction.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
-
-		</form>
+        <input type="checkbox" id="navigationArrowKeysEnabled">
+        <label for="navigationArrowKeysEnabled">Navigate through answers with keyboard arrow keys (left/right)</label>
+        <br/><em>Give the ability to navigate through all answers without having to remove your hands from
+        keyboard.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
 
 
+        <h2>Miscellaneous</h2>
 
-        <h1>Give me feedback</h1>
-        <hr/>
-        <p>
-            I would love to hear your feedback about this extension. Do not hesitate to contact me if you have any question/feature request. If you are enjoying the extension, please leave a review on Chrome Store.
+        <input type="checkbox" id="autoExpandVotesCountEnabled">
+        <label for="autoExpandVotesCountEnabled">Auto expand votes count & Show answer score (in percent)</label>
+        <br/><em><strong>You need to have at least 1000 reputation on StackOverflow for this feature to work.</strong>
+        When arriving on Stack Overflow page, it automatically expand votes count (upvotes/downvotes) and shows the
+        score of the answer (in percent).</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+        <br/><br/>
 
-            <form style="display: inline-block" action="https://chrome.google.com/webstore/detail/stackoverflow-power-user/dghoicnlchonhhkccfmjpjconhpajhdg/reviews">
-                <input type="submit" value="⭐️ Leave review on Chrome Store" />
-            </form>
+        <input type="checkbox" id="stickyScrollOnUpvoteButtons">
+        <label for="stickyScrollOnUpvoteButtons">Sticky scroll on vote buttons</label>
+        <br/><em>Make vote buttons scroll so that they are still visible even on long posts.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+        <br/><br/>
 
-            <form style="display: inline-block" action="https://gitter.im/StackOverflowPowerUser/community">
-                <input type="submit" value="🗣 Chat on Gitter" />
-            </form>
-        </p>
-
-
-
-        <h1>Contribute on GitHub</h1>
-        <hr/>
-        <p>
-            StackOverflow Power User is now open source ! Feel free to submit a PR to add a feature or fix a bug. You can also submit bugs reports or feature requests. We can gain even more productivity with your help !
-
-            <form style="display: inline-block" action="https://github.com/AnthoPakPak/StackOverflowPowerUser">
-                <input type="submit" value="GitHub Repository" />
-            </form>
-        </p>
+        <input type="checkbox" id="expandAllCommentsOnCtrlfEnabled">
+        <label for="expandAllCommentsOnCtrlfEnabled">Expand all comments automatically when performing CMD/Ctrl +
+            F</label> <span class="newFeature">NEW !</span>
+        <br/><em>Automatically expand all "show X more comments" when you use CMD/Ctrl + F to search in page. This way
+        you ensure that you're not missing any result.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
 
 
+        <h2>Hide elements</h2>
 
-        <h1>Changelog - What's new ?</h1>
-        <hr/>
-        <p>
-            <strong>In the last update (0.3.0) :</strong><br/>
-            - The code has been totally refactored, improved, documented in preparation to open sourcing. You can now contribute on the extension by making PR on <a href="https://github.com/AnthoPakPak/StackOverflowPowerUser" target="_blank">GitHub</a>. You can also submit bugs or feature requests there ;)<br/>
-            - Add a feature to automatically expand all comments (hidden behind "show X more comments") when you use CMD/Ctrl + F to search in page. This way you ensure that you are searching the whole page and are not missing any results.<br/>
-            - Add a feature to hide "Hot Network Questions" & "Meta Posts" blocks from SO right sidebar to prevent distraction (as requested by @Mikey Stengel)<br/>
-            - Settings page : sort features by categories to improve readability + settings are now saved automatically when you change an option (no need to click the Save button anymore)<br/>
-            - Improve the "Auto expand votes count" feature to avoid reaching SO limit while navigating through answers with arrow keys
+        <input type="checkbox" id="hideStackOverflowLeftSidebar">
+        <label for="hideStackOverflowLeftSidebar">Hide the useless StackOverflow left sidebar</label>
+        <br/><em>Just hide the new sidebar with "Home", "Tags", "Users", "Jobs", that may be useless for most users and
+        takes too much space.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+        <br/><br/>
 
-            <form style="display: inline-block" action="changelog.html">
-                <input type="submit" value="View full Changelog page" />
-            </form>
-        </p>
+        <input type="checkbox" id="hideHotNetworkQuestions">
+        <label for="hideHotNetworkQuestions">Hide the "Hot Network Questions" block from right sidebar</label> <span
+            class="newFeature">NEW !</span>
+        <br/><em>Just hide this block to prevent distraction.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+        <br/><br/>
 
+        <input type="checkbox" id="hideMetaPosts">
+        <label for="hideMetaPosts">Hide the "Featured on Meta" & "Hot Meta posts" block from right sidebar</label> <span
+            class="newFeature">NEW !</span>
+        <br/><em>Just hide this block to prevent distraction.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
 
-
-
-        <footer>Anthonin Cocagne - <a href="mailto:anthococagne@hotmail.fr">Mail</a> |
-            <a href="https://www.linkedin.com/in/anthonin-cocagne-22aa6ab5/" target="_blank">LinkedIn</a> |
-            <a href="https://stackoverflow.com/users/4894980/anthopak" target="_blank">StackOverflow</a></footer>
-	</div>
+    </form>
 
 
-    <div id="saveConfirmationBottomBar">
-        Settings saved !
-    </div>
+    <h1>Give me feedback</h1>
+    <hr/>
+    <p>
+        I would love to hear your feedback about this extension. Do not hesitate to contact me if you have any
+        question/feature request. If you are enjoying the extension, please leave a review on Chrome Store.
+
+    <form style="display: inline-block"
+          action="https://chrome.google.com/webstore/detail/stackoverflow-power-user/dghoicnlchonhhkccfmjpjconhpajhdg/reviews">
+        <input type="submit" value="⭐️ Leave review on Chrome Store"/>
+    </form>
+
+    <form style="display: inline-block" action="https://gitter.im/StackOverflowPowerUser/community">
+        <input type="submit" value="🗣 Chat on Gitter"/>
+    </form>
+    </p>
+
+
+    <h1>Contribute on GitHub</h1>
+    <hr/>
+    <p>
+        StackOverflow Power User is now open source ! Feel free to submit a PR to add a feature or fix a bug. You can
+        also submit bugs reports or feature requests. We can gain even more productivity with your help !
+
+    <form style="display: inline-block" action="https://github.com/AnthoPakPak/StackOverflowPowerUser">
+        <input type="submit" value="GitHub Repository"/>
+    </form>
+    </p>
+
+
+    <h1>Changelog - What's new ?</h1>
+    <hr/>
+    <p>
+        <strong>In the last update (0.3.0) :</strong><br/>
+        - The code has been totally refactored, improved, documented in preparation to open sourcing. You can now
+        contribute on the extension by making PR on <a href="https://github.com/AnthoPakPak/StackOverflowPowerUser" target="_blank">GitHub</a>.
+        You can also submit bugs or feature requests there ;)<br/>
+        - Add a feature to automatically expand all comments (hidden behind "show X more comments") when you use
+        CMD/Ctrl + F to search in page. This way you ensure that you are searching the whole page and are not missing
+        any results.<br/>
+        - Add a feature to hide "Hot Network Questions" & "Meta Posts" blocks from SO right sidebar to prevent
+        distraction (as requested by @Mikey Stengel)<br/>
+        - Settings page : sort features by categories to improve readability + settings are now saved automatically when
+        you change an option (no need to click the Save button anymore)<br/>
+        - Improve the "Auto expand votes count" feature to avoid reaching SO limit while navigating through answers with
+        arrow keys
+
+    <form style="display: inline-block" action="changelog.html">
+        <input type="submit" value="View full Changelog page"/>
+    </form>
+    </p>
+
+
+    <footer>Anthonin Cocagne - <a href="mailto:anthococagne@hotmail.fr">Mail</a> |
+        <a href="https://www.linkedin.com/in/anthonin-cocagne-22aa6ab5/" target="_blank">LinkedIn</a> |
+        <a href="https://stackoverflow.com/users/4894980/anthopak" target="_blank">StackOverflow</a></footer>
+</div>
+
+
+<div id="saveConfirmationBottomBar">
+    Settings saved !
+</div>
 </body>
 </html>

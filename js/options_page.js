@@ -1,6 +1,15 @@
+let confirmationTimer;
+
 window.onload = function() {
     restoreSettings();
-    document.getElementById('saveButton').addEventListener('click', saveSettings);
+
+    //Save settings on each input click
+    let settingsForm = document.getElementById('settingsForm');
+    let allInputs = settingsForm.getElementsByTagName("input");
+
+    for (let i = 0; i < allInputs.length; i++) {
+        allInputs[i].addEventListener('click', saveSettings);
+    }
 };
 
 
@@ -71,12 +80,13 @@ function restoreSettings() {
 
 
 /**
- * Quickly show a Saved confirmation text
+ * Quickly show a Saved confirmation bottom bar
  */
 function showSaveConfirmation() {
-    document.getElementById('confirmation').innerHTML = "Options saved !";
-    let x = setInterval(function() {
-        document.getElementById('confirmation').innerHTML = "";
-        clearInterval(x);
+    clearTimeout(confirmationTimer); //clear any previous timer
+
+    document.getElementById('saveConfirmationBottomBar').style.display = "block";
+    confirmationTimer = setTimeout(function() {
+        document.getElementById('saveConfirmationBottomBar').style.display = "none";
     }, 2000);
 }

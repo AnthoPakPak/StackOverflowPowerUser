@@ -16,8 +16,12 @@ header em {
 
 footer {
     max-width: 700px;
-    margin: 0 auto 20px auto;
+    margin: 40px auto 20px auto;
     text-align: center
+}
+
+h1 {
+    margin-top: 40px !important;
 }
 
 h2 {

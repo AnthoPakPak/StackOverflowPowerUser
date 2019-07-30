@@ -78,15 +78,21 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
     if (nbFavorites === '') {
         nbFavorites = '0';
     }
-    let nbViews = document.getElementById("qinfo").getElementsByTagName("b")[1].innerHTML.replace(' times', '');
-    let asked = document.getElementById("qinfo").getElementsByTagName("b")[0].getElementsByTagName("time")[0].innerHTML;
 
-    let lastActive;
-    if (document.getElementById("qinfo").getElementsByTagName("b").length > 2) {
-        lastActive = document.getElementById("qinfo").getElementsByTagName("b")[2].getElementsByTagName("a")[0].innerHTML;
-    } else {
-        lastActive = "N/A";
+    //dates and views information
+    if (document.getElementsByClassName("grid fw-wrap pb8 mb16 bb bc-black-2").length === 0) {
+        return;
     }
+
+    let qInfoMainDiv = document.getElementsByClassName("grid fw-wrap pb8 mb16 bb bc-black-2")[0];
+    let qInfoDivsArray = qInfoMainDiv.getElementsByClassName("grid--cell ws-nowrap mb8");
+
+    let lastActiveIsPresent = qInfoDivsArray.length > 2;
+
+    let nbViews = qInfoDivsArray[lastActiveIsPresent ? 2 : 1].innerText.replace('Viewed ', '').replace(' times', '');
+    let asked = qInfoDivsArray[0].innerText.replace('Asked ', '');
+
+    let lastActive = lastActiveIsPresent ? qInfoDivsArray[1].innerText.replace('Active ', '') : "N/A";
 
     a.innerHTML += "<span>\n" +
         "&#9679; <b>Question votes :</b> " + nbUpvotesOnQuestion + "<br>\n" +

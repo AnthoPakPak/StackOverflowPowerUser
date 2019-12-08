@@ -3,7 +3,7 @@
 
   "name": "StackOverflow Power User",
   "short_name": "SO Power User",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Stop wasting time while programming ! Adds many features to save time when searching for solutions on StackOverflow",
 
   "content_scripts": [{
@@ -17,15 +17,15 @@
            "js/features/misc_features.js",
            "js/features/no_answer.js",
            "js/features/navigate_through_answers.js"],
-    "matches": ["https://stackoverflow.com/questions/*/*",
-                "https://superuser.com/questions/*/*",
+    "matches": ["https://*.stackoverflow.com/questions/*/*",
+                "https://*.superuser.com/questions/*/*",
                 "https://*.stackexchange.com/questions/*/*",
-            	"https://stackapps.com/*/*",
-            	"https://askubuntu.com/*/*",
-            	"https://serverfault.com/*/*",
-            	"https://mathoverflow.net/*/*",
-            	"https://meta.stackoverflow.com/*/*",
-            	"https://meta.stackexchange.com/*/*"]
+            	"https://*.stackapps.com/*/*",
+            	"https://*.askubuntu.com/*/*",
+            	"https://*.serverfault.com/*/*",
+            	"https://*.mathoverflow.net/*/*",
+            	"https://*.meta.stackoverflow.com/*/*",
+            	"https://*.meta.stackexchange.com/*/*"]
   }],
 
   "web_accessible_resources": [

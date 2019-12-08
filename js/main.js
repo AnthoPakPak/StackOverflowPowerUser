@@ -19,6 +19,8 @@ getUserPrefs(function() {
 
     //SIDEBAR
 
+    // sandbox();
+
     if (userPrefs.showSidebarEnabled) {
         setupSidebarWithVotesCounts();
     }
@@ -74,8 +76,64 @@ getUserPrefs(function() {
     if (userPrefs.hideMetaPosts) {
         hideMetaPosts();
     }
+
+
+
+
+
+
 });
 
+function sandbox() {
+    //SANDBOX FOR CODE TESTING
+    //TODO auto click on all upvoted question/answer + add result date in DOM
+
+    //the date popup is shown when clicking again on a previously upvoted answer, and it looks like this:
+    // <p class="m0 js-toast-body" id="js-notice-toast-message" role="status" tabindex="0">You last voted on this answer Oct 24 at 14:21. Your vote is now locked in unless this answer is edited.</p>
+
+    console.log("Sandbox!");
+    console.log("Get upvoted date");
+
+    let body = document.getElementsByTagName("BODY")[0]; //alert direct parent is body (no chance…)
+    MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    let observer = new MutationObserver(function(mutations, observer) {
+        console.log("layout changed!");
+
+        let alertPopup = document.getElementById("js-notice-toast-message");
+        if (alertPopup) {
+            setTimeout(function () {
+                if (alertPopup.innerText.indexOf("You last voted on this") !== -1) {
+
+                    alertPopup.parentNode.parentNode.parentNode.style.display = 'none';
+
+                    let startIndex = alertPopup.innerText.indexOf("answer") !== -1 ? "You last voted on this answer ".length : "You last voted on this question ".length;
+
+                    let date = alertPopup.innerText;
+                    date = date.substring(startIndex, date.indexOf("."));
+                    console.log(date);
+
+                    //HERE ADD to DOM
+                }
+
+            }, 10);
+        }
+
+        //observer.disconnect();
+    });
+
+    observer.observe(body, { childList:true });
+
+
+    setTimeout(function () {
+        let allUpvotedButtons = document.getElementsByClassName("js-vote-up-btn fc-theme-primary");
+        console.log("allUpvotedButtons " + allUpvotedButtons.length);
+        for (let i = 0; i < allUpvotedButtons.length; i++) {
+            setTimeout(function () {
+                allUpvotedButtons[i].click();
+            }, 500 * (i + 1));
+        }
+    }, 200);
+}
 
 
 //region UserPrefs

@@ -74,7 +74,7 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
     //add additional informations in popover
     let nbUpvotesOnQuestion = parseInt(document.getElementsByClassName("js-vote-count")[0].innerText);
 
-    let nbFavorites = document.getElementsByClassName("js-favorite-count mt8")[0].innerHTML;
+    let nbFavorites = document.getElementsByClassName("js-favorite-count")[0].innerHTML;
     if (nbFavorites === '') {
         nbFavorites = '0';
     }

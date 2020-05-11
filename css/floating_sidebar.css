@@ -60,7 +60,7 @@
     width: 200px;
     float: left;
     text-align: left;
-    background: rgb(50,50,50);
+    background: rgb(60,60,60);
     color: #fff;
     margin: -50px 74px;
     padding: 8px;
@@ -95,7 +95,7 @@
 
 
 #nbAnswers {
-    background: rgb(50,50,50);
+    background: rgb(60,60,60);
     font-weight: bold;
     /*cursor: default;*/
     height:40px;

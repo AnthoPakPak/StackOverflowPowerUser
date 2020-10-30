@@ -44,6 +44,8 @@
 #upvoteQuestionButton {
     margin-top: 10px;
     margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .social li a:hover { background: #3b5998 }

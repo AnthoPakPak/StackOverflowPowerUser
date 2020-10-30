@@ -80,28 +80,26 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
     }
 
     //dates and views information
-    if (document.getElementsByClassName("grid fw-wrap pb8 mb16 bb bc-black-2").length === 0) {
-        return;
+    if (document.getElementsByClassName("grid fw-wrap pb8 mb16 bb").length !== 0) {
+        let qInfoMainDiv = document.getElementsByClassName("grid fw-wrap pb8 mb16 bb")[0];
+        let qInfoDivsArray = qInfoMainDiv.getElementsByClassName("grid--cell ws-nowrap mb8");
+
+        let lastActiveIsPresent = qInfoDivsArray.length > 2;
+
+        let nbViews = qInfoDivsArray[lastActiveIsPresent ? 2 : 1].innerText.replace('Viewed ', '').replace(' times', '');
+        let asked = qInfoDivsArray[0].innerText.replace('Asked ', '');
+
+        let lastActive = lastActiveIsPresent ? qInfoDivsArray[1].innerText.replace('Active ', '') : "N/A";
+
+        a.innerHTML += "<span>\n" +
+            "&#9679; <b>Question votes :</b> " + nbUpvotesOnQuestion + "<br>\n" +
+            "&#9679; <b>Favorites :</b> " + nbFavorites + "<br>\n" +
+            "&#9679; <b>Views :</b> " + nbViews + "<br>\n" +
+            "&#9679; <b>Asked :</b> " + asked + "<br>\n" +
+            "&#9679; <b>Active :</b> " + lastActive + "\n" +
+            "<br/><center><button id='upvoteQuestionButton' class='ws-nowrap s-btn s-btn__primary'>Upvote question</button></center>" +
+            "</span>";
     }
-
-    let qInfoMainDiv = document.getElementsByClassName("grid fw-wrap pb8 mb16 bb bc-black-2")[0];
-    let qInfoDivsArray = qInfoMainDiv.getElementsByClassName("grid--cell ws-nowrap mb8");
-
-    let lastActiveIsPresent = qInfoDivsArray.length > 2;
-
-    let nbViews = qInfoDivsArray[lastActiveIsPresent ? 2 : 1].innerText.replace('Viewed ', '').replace(' times', '');
-    let asked = qInfoDivsArray[0].innerText.replace('Asked ', '');
-
-    let lastActive = lastActiveIsPresent ? qInfoDivsArray[1].innerText.replace('Active ', '') : "N/A";
-
-    a.innerHTML += "<span>\n" +
-        "&#9679; <b>Question votes :</b> " + nbUpvotesOnQuestion + "<br>\n" +
-        "&#9679; <b>Favorites :</b> " + nbFavorites + "<br>\n" +
-        "&#9679; <b>Views :</b> " + nbViews + "<br>\n" +
-        "&#9679; <b>Asked :</b> " + asked + "<br>\n" +
-        "&#9679; <b>Active :</b> " + lastActive + "\n" +
-        "<br/><center><button id='upvoteQuestionButton'>Upvote question</button></center>" +
-        "</span>";
     //end popover
 
 

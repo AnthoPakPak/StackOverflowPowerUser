@@ -1,5 +1,5 @@
 const nbVotesCountsToAutoExpand = 4; //the number of votes counts that will be automatically expanded on page load. Do not set a high value here to not overload SO servers.
-const timeBetweenTwoExpands = 1000; //the delay we need to wait between each expand to avoid reaching SO limit
+const timeBetweenTwoExpands = 2000; //the delay we need to wait between each expand to avoid reaching SO limit
 
 let expandVotesCountsTimer;
 let lastExpandedVotesCountDateTime = 0;

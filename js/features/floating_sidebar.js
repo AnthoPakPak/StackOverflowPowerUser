@@ -80,9 +80,9 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
     }
 
     //dates and views information
-    if (document.getElementsByClassName("grid fw-wrap pb8 mb16 bb").length !== 0) {
-        let qInfoMainDiv = document.getElementsByClassName("grid fw-wrap pb8 mb16 bb")[0];
-        let qInfoDivsArray = qInfoMainDiv.getElementsByClassName("grid--cell ws-nowrap mb8");
+    if (document.getElementsByClassName("d-flex fw-wrap pb8 mb16 bb").length !== 0) {
+        let qInfoMainDiv = document.getElementsByClassName("d-flex fw-wrap pb8 mb16 bb")[0];
+        let qInfoDivsArray = qInfoMainDiv.getElementsByClassName("flex--item ws-nowrap mb8");
 
         let lastActiveIsPresent = qInfoDivsArray.length > 2;
 

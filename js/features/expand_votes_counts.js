@@ -118,24 +118,22 @@ function setPercentageForIndex(index) {
 
     //console.log(upVotes, downVotes, percentPositive);
 
-    if (voteDiv.getElementsByClassName("circlePercent").length > 0) { //if the badge is already created we update it
+    if (voteDiv.getElementsByClassName("votesPercent").length > 0) { //if the badge is already created we update it
         if (upVotes === 0 && downVotes === 0) { //if there are currently no votes (this is different from having +1/-1)
-            voteDiv.getElementsByClassName("circlePercent")[0].textContent = "?";
-            voteDiv.getElementsByClassName("circlePercent")[0].style.backgroundColor = "#3399ff"; //blue color
+            return; //we don't show unknown percent values
         } else {
-            voteDiv.getElementsByClassName("circlePercent")[0].textContent = percentPositive + "%";
-            voteDiv.getElementsByClassName("circlePercent")[0].style.backgroundColor = getColorAccordingToPourcent(percentPositive);
+            voteDiv.getElementsByClassName("votesPercent")[0].innerHTML = percentPositive + "<span class=\"percentSymbol\">%</span>";
+            voteDiv.getElementsByClassName("votesPercent")[0].style.color = getColorAccordingToPercent(percentPositive);
         }
     } else { //instead we create the badge
         let percentDiv = document.createElement("DIV");
-        percentDiv.className = "circlePercent";
+        percentDiv.className = "votesPercent";
 
         if (upVotes === 0 && downVotes === 0) { //if there are currently no votes (this is different from having +1/-1)
-            percentDiv.textContent = "?";
-            percentDiv.style.backgroundColor = "#3399ff"; //blue color
+            return; //we don't show unknown percent values
         } else {
-            percentDiv.textContent = percentPositive + "%";
-            percentDiv.style.backgroundColor = getColorAccordingToPourcent(percentPositive);
+            percentDiv.innerHTML = percentPositive + "<span class=\"percentSymbol\">%</span>";
+            percentDiv.style.color = getColorAccordingToPercent(percentPositive);
         }
 
         voteDiv.appendChild(percentDiv);
@@ -147,30 +145,55 @@ function setPercentageForIndex(index) {
  * Return a color going from green to red from a percentage value.
  * 100% is green, 80% is red.
  * I've arbitrary chosen 80% to be red as I think an answer having 20% of downvotes is a bad one.
- *
- * Inspire by this Fiddle : http://jsfiddle.net/jongobar/sNKWK/
- * @param pourcentValue
+ * @param percentValue
  * @returns {string}
  */
-function getColorAccordingToPourcent(pourcentValue){
-    if (pourcentValue < 80) //we don't want to be below 80 as 80 is already red
-        pourcentValue = 80;
+function getColorAccordingToPercent(percentValue){
+    if (percentValue < 80) //we don't want to be below 80 as 80 is already red
+        percentValue = 80;
+
+    //New method color between SO green/red colors
+    let adaptedPercentValue = percentValue / 100;
+    adaptedPercentValue = 1 - ((1 - adaptedPercentValue) * 5); //We want to convert a value between 0.8 and 1, to a value between 0 and 1. 1 / (1 - 0.8) = 5
+    return getColorOnGradient(adaptedPercentValue);
 
     //value from 100 to 80
-    let hue=((0.2-(1-(pourcentValue/100)))*500).toString(10);
-    return ["hsl(",hue,",100%,50%)"].join("");
-
-
-    //I let the 90% version below for the record, as working with these values is a bit tricky.
-    //version 90% min
-    // if (pourcentValue < 90)
-    //     pourcentValue = 90;
-    //
-    // //value from 100 to 90
-    // var hue=((0.1-(1-(pourcentValue/100)))*1000).toString(10);
+    //Old method between plain green/red (Inspired by this Fiddle: http://jsfiddle.net/jongobar/sNKWK/)
+    // let hue=((0.2-(1-(percentValue/100)))*500).toString(10);
     // return ["hsl(",hue,",100%,50%)"].join("");
 }
 
+/**
+ * Get a color on a gradient between two colors, for a specific value
+ * 
+ * Inspired by this answer: https://stackoverflow.com/a/30144587/4894980
+ * @param {float} value value between 0 and 1 on the gradient
+ * @returns color for this value
+ */
+function getColorOnGradient(value) {
+    let greenColor = getCSSColorOfClass('.fc-green-600');
+    let redColor = getCSSColorOfClass('.fc-red-600');
+
+    var w1 = value;
+    var w2 = 1 - w1;
+    var rgb = [Math.round(greenColor[0] * w1 + redColor[0] * w2),
+        Math.round(greenColor[1] * w1 + redColor[1] * w2),
+        Math.round(greenColor[2] * w1 + redColor[2] * w2)];
+    return 'rgb('+rgb.join()+')';
+}
+
+/**
+ * Returns the color property of a CSS class.
+ * We use this to fetch up/down votes colors, since they're different on light/dark SO, and other SE websites
+ * @param className the name of the class we want to fetch color
+ * @returns {string[]} [r, g, b]
+ */
+function getCSSColorOfClass(className) {
+    var elem, style;
+    elem = document.querySelector(className);
+    style = getComputedStyle(elem);
+    return style.color.replace(/[^\d,]/g, '').split(',');
+}
 
 /**
  * It will cancel currently queued votes counts expand. Useful when navigating through answers with arrow keys quickly.

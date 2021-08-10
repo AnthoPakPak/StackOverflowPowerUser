@@ -65,10 +65,6 @@ getUserPrefs(function() {
 
     //HIDE ELEMENTS
 
-    if (!userPrefs.hideStackOverflowLeftSidebar) {
-        unhideLeftSidebar();
-    }
-
     if (userPrefs.hideHotNetworkQuestions) {
         hideHotNetworkQuestions();
     }
@@ -150,7 +146,6 @@ function getUserPrefs(callback) {
         showSidebarEnabled: true,
         navigationArrowKeysEnabled: true,
         autoExpandVotesCountEnabled: true,
-        hideStackOverflowLeftSidebar: true,
         stickyScrollOnUpvoteButtons: true,
         expandAllCommentsOnCtrlfEnabled: true,
         hideHotNetworkQuestions: false,

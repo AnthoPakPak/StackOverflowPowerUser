@@ -23,7 +23,6 @@ function saveSettings() {
     let showSidebarEnabled = document.getElementById('showSidebarEnabled').checked;
     let navigationArrowKeysEnabled = document.getElementById('navigationArrowKeysEnabled').checked;
     let autoExpandVotesCountEnabled = document.getElementById('autoExpandVotesCountEnabled').checked;
-    let hideStackOverflowLeftSidebar = document.getElementById('hideStackOverflowLeftSidebar').checked;
     let stickyScrollOnUpvoteButtons = document.getElementById('stickyScrollOnUpvoteButtons').checked;
     let expandAllCommentsOnCtrlfEnabled = document.getElementById('expandAllCommentsOnCtrlfEnabled').checked;
     let hideHotNetworkQuestions = document.getElementById('hideHotNetworkQuestions').checked;
@@ -35,7 +34,6 @@ function saveSettings() {
         showSidebarEnabled: showSidebarEnabled,
         navigationArrowKeysEnabled: navigationArrowKeysEnabled,
         autoExpandVotesCountEnabled: autoExpandVotesCountEnabled,
-        hideStackOverflowLeftSidebar: hideStackOverflowLeftSidebar,
         stickyScrollOnUpvoteButtons: stickyScrollOnUpvoteButtons,
         expandAllCommentsOnCtrlfEnabled: expandAllCommentsOnCtrlfEnabled,
         hideHotNetworkQuestions: hideHotNetworkQuestions,
@@ -58,7 +56,6 @@ function restoreSettings() {
         showSidebarEnabled: true,
         navigationArrowKeysEnabled: true,
         autoExpandVotesCountEnabled: true,
-        hideStackOverflowLeftSidebar: true,
         stickyScrollOnUpvoteButtons: true,
         expandAllCommentsOnCtrlfEnabled: true,
         hideHotNetworkQuestions: false,
@@ -70,7 +67,6 @@ function restoreSettings() {
         document.getElementById('showSidebarEnabled').checked = items.showSidebarEnabled;
         document.getElementById('navigationArrowKeysEnabled').checked = items.navigationArrowKeysEnabled;
         document.getElementById('autoExpandVotesCountEnabled').checked = items.autoExpandVotesCountEnabled;
-        document.getElementById('hideStackOverflowLeftSidebar').checked = items.hideStackOverflowLeftSidebar;
         document.getElementById('stickyScrollOnUpvoteButtons').checked = items.stickyScrollOnUpvoteButtons;
         document.getElementById('expandAllCommentsOnCtrlfEnabled').checked = items.expandAllCommentsOnCtrlfEnabled;
         document.getElementById('hideHotNetworkQuestions').checked = items.hideHotNetworkQuestions;

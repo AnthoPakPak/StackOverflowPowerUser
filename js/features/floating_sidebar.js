@@ -74,11 +74,6 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
     //add additional informations in popover
     let nbUpvotesOnQuestion = parseInt(document.getElementsByClassName("js-vote-count")[0].innerText);
 
-    let nbFavorites = document.getElementsByClassName("js-bookmark-count")[0].innerHTML;
-    if (nbFavorites === '') {
-        nbFavorites = '0';
-    }
-
     //dates and views information
     if (document.getElementsByClassName("d-flex fw-wrap pb8 mb16 bb").length !== 0) {
         let qInfoMainDiv = document.getElementsByClassName("d-flex fw-wrap pb8 mb16 bb")[0];
@@ -93,7 +88,6 @@ function addNbAnswersInSidebar(ul, nbAnswers) {
 
         a.innerHTML += "<span>\n" +
             "&#9679; <b>Question votes :</b> " + nbUpvotesOnQuestion + "<br>\n" +
-            "&#9679; <b>Favorites :</b> " + nbFavorites + "<br>\n" +
             "&#9679; <b>Views :</b> " + nbViews + "<br>\n" +
             "&#9679; <b>Asked :</b> " + asked + "<br>\n" +
             "&#9679; <b>Active :</b> " + lastActive + "\n" +

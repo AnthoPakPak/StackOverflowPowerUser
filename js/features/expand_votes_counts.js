@@ -75,7 +75,7 @@ function addListenerOnVoteCounts() {
  * Expand votes count on an answer. This is normally done clicking the vote number on SO (you will need more than 1000 reputation to have the privilege to do this).
  * There must be 1 second before each expand to avoid reaching SO limit. That's why listeners are set on votes counts (see `addListenerOnVoteCounts`) so that it will wait the end of the fetch before fetching the next one.
  * @param index index of the votes count to expand
- * @param withDelay should it be expanded waiting 1sec or immediately ?
+ * @param withDelay should it be expanded waiting 1sec or immediately?
  */
 function expandVotesCountOnIndex(index, withDelay) {
     let delay = withDelay ? timeBetweenTwoExpands : 0;

@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
 
   "name": "StackOverflow Power User",
   "short_name": "SO Power User",
@@ -28,9 +28,10 @@
             	"https://*.meta.stackexchange.com/*/*"]
   }],
 
-  "web_accessible_resources": [
-    "img/*"
-  ],
+  "web_accessible_resources": [{
+    "resources": ["img/*"],
+    "matches": ["<all_urls>"]
+  }],
 
   "permissions": ["storage"],
   "options_page": "options_page.html",
@@ -41,7 +42,6 @@
   },
 
   "background": {
-    "scripts": ["js/background.js"],
-    "persistent": false
+    "service_worker": "js/background.js"
   }
 }

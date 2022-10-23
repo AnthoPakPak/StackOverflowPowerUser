@@ -1,8 +1,8 @@
 
-function setupBypassVotesCount() {
+function setupBypassViewVoteCounts() {
 
     var script = document.createElement('script');
-    script.src = chrome.runtime.getURL("js/features/bypass_view_votes_count_script.js");
+    script.src = chrome.runtime.getURL("js/features/bypass_view_vote_counts_script.js");
     script.onload = function () {
         this.remove();
     };

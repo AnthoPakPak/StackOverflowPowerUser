@@ -25,7 +25,7 @@ function autoExpandVotesCounts() {
  */
 function userHasEnoughReputation() {
 
-    if (userPrefs.bypassViewVotesCountEnabled) {
+    if (userPrefs.bypassViewVoteCountsEnabled) {
         return true;
     }
 

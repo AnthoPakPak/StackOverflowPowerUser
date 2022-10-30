@@ -32,7 +32,7 @@
   "web_accessible_resources": [{
     "resources": [
       "img/*",
-      "js/features/bypass_view_vote_counts_script.js"
+      "js/externals/bypass_view_vote_counts_script.js"
     ],
     "matches": ["<all_urls>"]
   }],

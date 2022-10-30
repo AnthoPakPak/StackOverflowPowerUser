@@ -50,8 +50,8 @@ getUserPrefs(function() {
 
     //MISCELLANEOUS
 
-    if (userPrefs.bypassViewVoteCountsEnabled) {
-        setupBypassViewVoteCounts();
+    if (userPrefs.bypassMinRepToViewVoteCountsEnabled) {
+        setupBypassMinRepToViewVoteCounts();
     }
 
     if (userPrefs.autoExpandVotesCountEnabled) {
@@ -149,7 +149,7 @@ function getUserPrefs(callback) {
         autoScrollFirstAnswerEnabled: false,
         showSidebarEnabled: true,
         navigationArrowKeysEnabled: true,
-        bypassViewVoteCountsEnabled: true,
+        bypassMinRepToViewVoteCountsEnabled: true,
         autoExpandVotesCountEnabled: true,
         stickyScrollOnUpvoteButtons: true,
         expandAllCommentsOnCtrlfEnabled: true,

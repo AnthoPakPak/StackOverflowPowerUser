@@ -24,8 +24,7 @@ function autoExpandVotesCounts() {
  * Verify that user has more than 1000 reputation points
  */
 function userHasEnoughReputation() {
-
-    if (userPrefs.bypassViewVoteCountsEnabled) {
+    if (userPrefs.bypassMinRepToViewVoteCountsEnabled) {
         return true;
     }
 

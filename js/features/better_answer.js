@@ -42,7 +42,7 @@ function showArrowDownImageOnAcceptedAnswer() {
     goDownLink.addEventListener("click", scrollToBetterAnswer);
 
     let goDownImg = document.createElement("IMG");
-    goDownImg.src = chrome.extension.getURL('/img/arrow_down.png');
+    goDownImg.src = chrome.runtime.getURL('/img/arrow_down.png');
     goDownImg.width = 40;
     goDownLink.appendChild(goDownImg);
 

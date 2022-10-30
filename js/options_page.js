@@ -22,6 +22,7 @@ function saveSettings() {
     let autoScrollFirstAnswerEnabled = document.getElementById('autoScrollFirstAnswerEnabled').checked;
     let showSidebarEnabled = document.getElementById('showSidebarEnabled').checked;
     let navigationArrowKeysEnabled = document.getElementById('navigationArrowKeysEnabled').checked;
+    let bypassMinRepToViewVoteCountsEnabled = document.getElementById('bypassMinRepToViewVoteCountsEnabled').checked;
     let autoExpandVotesCountEnabled = document.getElementById('autoExpandVotesCountEnabled').checked;
     let stickyScrollOnUpvoteButtons = document.getElementById('stickyScrollOnUpvoteButtons').checked;
     let expandAllCommentsOnCtrlfEnabled = document.getElementById('expandAllCommentsOnCtrlfEnabled').checked;
@@ -33,6 +34,7 @@ function saveSettings() {
         autoScrollFirstAnswerEnabled: autoScrollFirstAnswerEnabled,
         showSidebarEnabled: showSidebarEnabled,
         navigationArrowKeysEnabled: navigationArrowKeysEnabled,
+        bypassMinRepToViewVoteCountsEnabled: bypassMinRepToViewVoteCountsEnabled,
         autoExpandVotesCountEnabled: autoExpandVotesCountEnabled,
         stickyScrollOnUpvoteButtons: stickyScrollOnUpvoteButtons,
         expandAllCommentsOnCtrlfEnabled: expandAllCommentsOnCtrlfEnabled,
@@ -55,6 +57,7 @@ function restoreSettings() {
         autoScrollFirstAnswerEnabled: false,
         showSidebarEnabled: true,
         navigationArrowKeysEnabled: true,
+        bypassMinRepToViewVoteCountsEnabled: true,
         autoExpandVotesCountEnabled: true,
         stickyScrollOnUpvoteButtons: true,
         expandAllCommentsOnCtrlfEnabled: true,
@@ -66,6 +69,7 @@ function restoreSettings() {
         document.getElementById('autoScrollFirstAnswerEnabled').checked = items.autoScrollFirstAnswerEnabled;
         document.getElementById('showSidebarEnabled').checked = items.showSidebarEnabled;
         document.getElementById('navigationArrowKeysEnabled').checked = items.navigationArrowKeysEnabled;
+        document.getElementById('bypassMinRepToViewVoteCountsEnabled').checked = items.bypassMinRepToViewVoteCountsEnabled;
         document.getElementById('autoExpandVotesCountEnabled').checked = items.autoExpandVotesCountEnabled;
         document.getElementById('stickyScrollOnUpvoteButtons').checked = items.stickyScrollOnUpvoteButtons;
         document.getElementById('expandAllCommentsOnCtrlfEnabled').checked = items.expandAllCommentsOnCtrlfEnabled;

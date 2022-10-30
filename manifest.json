@@ -11,6 +11,7 @@
     "js": ["js/main.js",
            "js/helper.js",
            "js/features/better_answer.js",
+           "js/features/bypass_min_rep_view_vote_counts.js",
            "js/features/expand_votes_counts.js",
            "js/features/floating_sidebar.js",
            "js/features/hiding_content.js",
@@ -29,7 +30,10 @@
   }],
 
   "web_accessible_resources": [{
-    "resources": ["img/*"],
+    "resources": [
+      "img/*",
+      "js/externals/bypass_min_rep_view_vote_counts_script.js"
+    ],
     "matches": ["<all_urls>"]
   }],
 

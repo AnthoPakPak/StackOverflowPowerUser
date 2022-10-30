@@ -50,6 +50,10 @@ getUserPrefs(function() {
 
     //MISCELLANEOUS
 
+    if (userPrefs.bypassMinRepToViewVoteCountsEnabled) {
+        setupBypassMinRepToViewVoteCounts();
+    }
+
     if (userPrefs.autoExpandVotesCountEnabled) {
         autoExpandVotesCounts();
     }
@@ -145,6 +149,7 @@ function getUserPrefs(callback) {
         autoScrollFirstAnswerEnabled: false,
         showSidebarEnabled: true,
         navigationArrowKeysEnabled: true,
+        bypassMinRepToViewVoteCountsEnabled: true,
         autoExpandVotesCountEnabled: true,
         stickyScrollOnUpvoteButtons: true,
         expandAllCommentsOnCtrlfEnabled: true,

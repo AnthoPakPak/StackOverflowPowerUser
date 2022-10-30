@@ -24,6 +24,10 @@ function autoExpandVotesCounts() {
  * Verify that user has more than 1000 reputation points
  */
 function userHasEnoughReputation() {
+    if (userPrefs.bypassMinRepToViewVoteCountsEnabled) {
+        return true;
+    }
+
     if (userIsLoggedIn()) { //user is logged in
         let reputationString = getReputationString(); //will have this kind of format : 342 | 1,872 | 13k
         //console.log("rep string " + reputationString);

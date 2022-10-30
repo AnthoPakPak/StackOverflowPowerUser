@@ -62,9 +62,15 @@
 
         <h2>Miscellaneous</h2>
 
+        <input type="checkbox" id="bypassMinRepToViewVoteCountsEnabled">
+        <label for="bypassMinRepToViewVoteCountsEnabled">Bypass minimum reputation to view vote counts</label>
+        <br/><em>Enable expanding view vote counts even when you're under 1000 reputation or not logged in.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+        <br/><em>Thanks to <a href="https://stackapps.com/questions/3082/view-vote-totals-without-1000-rep" target="_blank">Rob W</a> and <a href="https://github.com/AnthoPakPak/StackOverflowPowerUser/pull/6" target="_blank">thedemons</a> for making this possible.</em>
+        <br/><br/>
+
         <input type="checkbox" id="autoExpandVotesCountEnabled">
         <label for="autoExpandVotesCountEnabled">Auto expand votes count & Show answer score (in percent)</label>
-        <br/><em><strong>You need to have at least 1000 reputation on StackOverflow for this feature to work.</strong>
+        <br/><em><strong>You need to enable "Bypass minimum reputation to view vote counts" or have at least 1000 reputation on StackOverflow for this feature to work.</strong>
         When arriving on Stack Overflow page, it automatically expand votes count (upvotes/downvotes) and shows the
         score of the answer (in percent).</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
         <br/><br/>

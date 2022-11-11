@@ -17,6 +17,7 @@ window.onload = function() {
  * Saves settings to `chrome.storage`
  */
 function saveSettings() {
+    let adjustPageForFullHD = document.getElementById('adjustPageForFullHD').checked;
     let betterAnswerEnabled = document.getElementById('betterAnswerEnabled').checked;
     let noAnswerEnabled = document.getElementById('noAnswerEnabled').checked;
     let autoScrollFirstAnswerEnabled = document.getElementById('autoScrollFirstAnswerEnabled').checked;
@@ -29,6 +30,7 @@ function saveSettings() {
     let hideHotNetworkQuestions = document.getElementById('hideHotNetworkQuestions').checked;
     let hideMetaPosts = document.getElementById('hideMetaPosts').checked;
     chrome.storage.sync.set({
+        adjustPageForFullHD: adjustPageForFullHD,
         betterAnswerEnabled: betterAnswerEnabled,
         noAnswerEnabled: noAnswerEnabled,
         autoScrollFirstAnswerEnabled: autoScrollFirstAnswerEnabled,
@@ -52,6 +54,7 @@ function saveSettings() {
  */
 function restoreSettings() {
     chrome.storage.sync.get({
+        adjustPageForFullHD: true,
         betterAnswerEnabled: true,
         noAnswerEnabled: true,
         autoScrollFirstAnswerEnabled: false,
@@ -64,6 +67,7 @@ function restoreSettings() {
         hideHotNetworkQuestions: false,
         hideMetaPosts: false
     }, function(items) {
+        document.getElementById('adjustPageForFullHD').checked = items.adjustPageForFullHD;
         document.getElementById('betterAnswerEnabled').checked = items.betterAnswerEnabled;
         document.getElementById('noAnswerEnabled').checked = items.noAnswerEnabled;
         document.getElementById('autoScrollFirstAnswerEnabled').checked = items.autoScrollFirstAnswerEnabled;

@@ -17,6 +17,12 @@ getUserPrefs(function() {
         return;
     }
 
+    //SCREEN
+
+    if (userPrefs.adjustPageForFullHD) {
+        adjustPageForFullHD();
+    }
+
     //SIDEBAR
 
     // sandbox();
@@ -144,6 +150,7 @@ function sandbox() {
  */
 function getUserPrefs(callback) {
     chrome.storage.sync.get({
+        adjustPageForFullHD: true,
         betterAnswerEnabled: true,
         noAnswerEnabled: true,
         autoScrollFirstAnswerEnabled: false,

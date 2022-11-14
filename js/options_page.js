@@ -9,6 +9,7 @@ window.onload = function() {
 
     for (let i = 0; i < allInputs.length; i++) {
         allInputs[i].addEventListener('click', saveSettings);
+        allInputs[i].addEventListener('input', saveSettings)
     }
 };
 
@@ -17,7 +18,8 @@ window.onload = function() {
  * Saves settings to `chrome.storage`
  */
 function saveSettings() {
-    let adjustPageForFullHD = document.getElementById('adjustPageForFullHD').checked;
+    let adjustPageWidth = document.getElementById('adjustPageWidth').checked;
+    let pageWidth = document.getElementById('pageWidth').value;
     let betterAnswerEnabled = document.getElementById('betterAnswerEnabled').checked;
     let noAnswerEnabled = document.getElementById('noAnswerEnabled').checked;
     let autoScrollFirstAnswerEnabled = document.getElementById('autoScrollFirstAnswerEnabled').checked;
@@ -30,7 +32,8 @@ function saveSettings() {
     let hideHotNetworkQuestions = document.getElementById('hideHotNetworkQuestions').checked;
     let hideMetaPosts = document.getElementById('hideMetaPosts').checked;
     chrome.storage.sync.set({
-        adjustPageForFullHD: adjustPageForFullHD,
+        adjustPageWidth: adjustPageWidth,
+        pageWidth: pageWidth,
         betterAnswerEnabled: betterAnswerEnabled,
         noAnswerEnabled: noAnswerEnabled,
         autoScrollFirstAnswerEnabled: autoScrollFirstAnswerEnabled,
@@ -54,7 +57,8 @@ function saveSettings() {
  */
 function restoreSettings() {
     chrome.storage.sync.get({
-        adjustPageForFullHD: true,
+        adjustPageWidth: true,
+        pageWidth: 1830,
         betterAnswerEnabled: true,
         noAnswerEnabled: true,
         autoScrollFirstAnswerEnabled: false,
@@ -67,7 +71,9 @@ function restoreSettings() {
         hideHotNetworkQuestions: false,
         hideMetaPosts: false
     }, function(items) {
-        document.getElementById('adjustPageForFullHD').checked = items.adjustPageForFullHD;
+        document.getElementById('adjustPageWidth').checked = items.adjustPageWidth;
+        debugger;
+        document.getElementById('pageWidth').value = items.pageWidth;
         document.getElementById('betterAnswerEnabled').checked = items.betterAnswerEnabled;
         document.getElementById('noAnswerEnabled').checked = items.noAnswerEnabled;
         document.getElementById('autoScrollFirstAnswerEnabled').checked = items.autoScrollFirstAnswerEnabled;

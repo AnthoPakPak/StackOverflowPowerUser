@@ -20,7 +20,7 @@ getUserPrefs(function() {
     //SCREEN
 
     if (userPrefs.adjustPageWidth) {
-        adjustPageWidth(userPrefs.pageWidth);
+        adjustPageWidth();
     }
 
     //SIDEBAR
@@ -151,7 +151,6 @@ function sandbox() {
 function getUserPrefs(callback) {
     chrome.storage.sync.get({
         adjustPageWidth: true,
-        pageWidth: 1830,
         betterAnswerEnabled: true,
         noAnswerEnabled: true,
         autoScrollFirstAnswerEnabled: false,

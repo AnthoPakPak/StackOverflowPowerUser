@@ -9,7 +9,6 @@ window.onload = function() {
 
     for (let i = 0; i < allInputs.length; i++) {
         allInputs[i].addEventListener('click', saveSettings);
-        allInputs[i].addEventListener('input', saveSettings)
     }
 };
 
@@ -19,7 +18,6 @@ window.onload = function() {
  */
 function saveSettings() {
     let adjustPageWidth = document.getElementById('adjustPageWidth').checked;
-    let pageWidth = document.getElementById('pageWidth').value;
     let betterAnswerEnabled = document.getElementById('betterAnswerEnabled').checked;
     let noAnswerEnabled = document.getElementById('noAnswerEnabled').checked;
     let autoScrollFirstAnswerEnabled = document.getElementById('autoScrollFirstAnswerEnabled').checked;
@@ -33,7 +31,6 @@ function saveSettings() {
     let hideMetaPosts = document.getElementById('hideMetaPosts').checked;
     chrome.storage.sync.set({
         adjustPageWidth: adjustPageWidth,
-        pageWidth: pageWidth,
         betterAnswerEnabled: betterAnswerEnabled,
         noAnswerEnabled: noAnswerEnabled,
         autoScrollFirstAnswerEnabled: autoScrollFirstAnswerEnabled,
@@ -58,7 +55,6 @@ function saveSettings() {
 function restoreSettings() {
     chrome.storage.sync.get({
         adjustPageWidth: true,
-        pageWidth: 1830,
         betterAnswerEnabled: true,
         noAnswerEnabled: true,
         autoScrollFirstAnswerEnabled: false,
@@ -72,8 +68,6 @@ function restoreSettings() {
         hideMetaPosts: false
     }, function(items) {
         document.getElementById('adjustPageWidth').checked = items.adjustPageWidth;
-        debugger;
-        document.getElementById('pageWidth').value = items.pageWidth;
         document.getElementById('betterAnswerEnabled').checked = items.betterAnswerEnabled;
         document.getElementById('noAnswerEnabled').checked = items.noAnswerEnabled;
         document.getElementById('autoScrollFirstAnswerEnabled').checked = items.autoScrollFirstAnswerEnabled;

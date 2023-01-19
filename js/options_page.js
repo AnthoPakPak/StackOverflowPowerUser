@@ -8,7 +8,7 @@ window.onload = function() {
     let allInputs = settingsForm.getElementsByTagName("input");
 
     for (let i = 0; i < allInputs.length; i++) {
-        allInputs[i].addEventListener('click', saveSettings);
+        allInputs[i].addEventListener('change', saveSettings);
     }
 };
 
@@ -17,7 +17,6 @@ window.onload = function() {
  * Saves settings to `chrome.storage`
  */
 function saveSettings() {
-    let adjustPageWidth = document.getElementById('adjustPageWidth').checked;
     let betterAnswerEnabled = document.getElementById('betterAnswerEnabled').checked;
     let noAnswerEnabled = document.getElementById('noAnswerEnabled').checked;
     let autoScrollFirstAnswerEnabled = document.getElementById('autoScrollFirstAnswerEnabled').checked;
@@ -29,8 +28,9 @@ function saveSettings() {
     let expandAllCommentsOnCtrlfEnabled = document.getElementById('expandAllCommentsOnCtrlfEnabled').checked;
     let hideHotNetworkQuestions = document.getElementById('hideHotNetworkQuestions').checked;
     let hideMetaPosts = document.getElementById('hideMetaPosts').checked;
+    let adjustPageWidthEnabled = document.getElementById('adjustPageWidthEnabled').checked;
+    let pageWidthPercent = document.getElementById('pageWidthPercent').value;
     chrome.storage.sync.set({
-        adjustPageWidth: adjustPageWidth,
         betterAnswerEnabled: betterAnswerEnabled,
         noAnswerEnabled: noAnswerEnabled,
         autoScrollFirstAnswerEnabled: autoScrollFirstAnswerEnabled,
@@ -41,7 +41,9 @@ function saveSettings() {
         stickyScrollOnUpvoteButtons: stickyScrollOnUpvoteButtons,
         expandAllCommentsOnCtrlfEnabled: expandAllCommentsOnCtrlfEnabled,
         hideHotNetworkQuestions: hideHotNetworkQuestions,
-        hideMetaPosts: hideMetaPosts
+        hideMetaPosts: hideMetaPosts,
+        adjustPageWidthEnabled: adjustPageWidthEnabled,
+        pageWidthPercent: pageWidthPercent
     }, function() {
         showSaveConfirmation();
         return false;
@@ -54,7 +56,6 @@ function saveSettings() {
  */
 function restoreSettings() {
     chrome.storage.sync.get({
-        adjustPageWidth: true,
         betterAnswerEnabled: true,
         noAnswerEnabled: true,
         autoScrollFirstAnswerEnabled: false,
@@ -65,9 +66,10 @@ function restoreSettings() {
         stickyScrollOnUpvoteButtons: true,
         expandAllCommentsOnCtrlfEnabled: true,
         hideHotNetworkQuestions: false,
-        hideMetaPosts: false
+        hideMetaPosts: false,
+        adjustPageWidthEnabled: false,
+        pageWidthPercent: 90
     }, function(items) {
-        document.getElementById('adjustPageWidth').checked = items.adjustPageWidth;
         document.getElementById('betterAnswerEnabled').checked = items.betterAnswerEnabled;
         document.getElementById('noAnswerEnabled').checked = items.noAnswerEnabled;
         document.getElementById('autoScrollFirstAnswerEnabled').checked = items.autoScrollFirstAnswerEnabled;
@@ -79,6 +81,8 @@ function restoreSettings() {
         document.getElementById('expandAllCommentsOnCtrlfEnabled').checked = items.expandAllCommentsOnCtrlfEnabled;
         document.getElementById('hideHotNetworkQuestions').checked = items.hideHotNetworkQuestions;
         document.getElementById('hideMetaPosts').checked = items.hideMetaPosts;
+        document.getElementById('adjustPageWidthEnabled').checked = items.adjustPageWidthEnabled;
+        document.getElementById('pageWidthPercent').value = items.pageWidthPercent;
     });
 }
 

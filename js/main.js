@@ -17,12 +17,6 @@ getUserPrefs(function() {
         return;
     }
 
-    //SCREEN
-
-    if (userPrefs.adjustPageWidth) {
-        adjustPageWidth();
-    }
-
     //SIDEBAR
 
     // sandbox();
@@ -51,6 +45,13 @@ getUserPrefs(function() {
 
     if (userPrefs.navigationArrowKeysEnabled) {
         setupArrowsKeystrokesListeners();
+    }
+
+
+    //PAGE WIDTH
+
+    if (userPrefs.adjustPageWidthEnabled) {
+        adjustPageWidth(userPrefs.pageWidthPercent);
     }
 
 
@@ -150,7 +151,6 @@ function sandbox() {
  */
 function getUserPrefs(callback) {
     chrome.storage.sync.get({
-        adjustPageWidth: true,
         betterAnswerEnabled: true,
         noAnswerEnabled: true,
         autoScrollFirstAnswerEnabled: false,
@@ -161,7 +161,9 @@ function getUserPrefs(callback) {
         stickyScrollOnUpvoteButtons: true,
         expandAllCommentsOnCtrlfEnabled: true,
         hideHotNetworkQuestions: false,
-        hideMetaPosts: false
+        hideMetaPosts: false,
+        adjustPageWidthEnabled: false,
+        pageWidthPercent: 90
     }, function(items) {
         userPrefs = items;
         callback();

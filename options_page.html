@@ -23,11 +23,6 @@
     <h1>Settings</h1>
     <hr/>
     <form id="settingsForm">
-        <h2>Screen</h2>
-        <input type="checkbox" id="adjustPageWidth">
-        <label for="adjustPageWidth">Adjust StackOverflow page for full screen</label>
-        <br/><em>Set maximal size of the content block</em> 
-
         <h2>Sidebar</h2>
 
         <input type="checkbox" id="showSidebarEnabled">
@@ -63,6 +58,15 @@
         <label for="navigationArrowKeysEnabled">Navigate through answers with keyboard arrow keys (left/right)</label>
         <br/><em>Give the ability to navigate through all answers without having to remove your hands from
         keyboard.</em> (<a href="https://stackoverflow.com/questions/11227809/why-is-it-faster-to-process-a-sorted-array-than-an-unsorted-array" target="_blank">Try it</a>)
+
+
+        <h2>Page width</h2>
+        <input type="checkbox" id="adjustPageWidthEnabled">
+        <label for="adjustPageWidthEnabled">Adjust StackOverflow page width</label>
+        <br/>
+        <label for="pageWidthPercent">Page width percent:</label>
+        <input type="number" id="pageWidthPercent" min="50" max="100"> %
+        <br/><em>Extends the width of the main container to take full advantage of large screens. Authorized range is 50-100%.</em> (<a href="https://stackoverflow.com/questions/38728331/uibarbuttonitems-in-uinavigationbar-are-sticking-to-the-borders" target="_blank">Try it</a>)
 
 
         <h2>Miscellaneous</h2>

@@ -8,7 +8,7 @@ window.onload = function() {
     let allInputs = settingsForm.getElementsByTagName("input");
 
     for (let i = 0; i < allInputs.length; i++) {
-        allInputs[i].addEventListener('click', saveSettings);
+        allInputs[i].addEventListener('change', saveSettings);
     }
 };
 
@@ -28,6 +28,8 @@ function saveSettings() {
     let expandAllCommentsOnCtrlfEnabled = document.getElementById('expandAllCommentsOnCtrlfEnabled').checked;
     let hideHotNetworkQuestions = document.getElementById('hideHotNetworkQuestions').checked;
     let hideMetaPosts = document.getElementById('hideMetaPosts').checked;
+    let adjustPageWidthEnabled = document.getElementById('adjustPageWidthEnabled').checked;
+    let pageWidthPercent = document.getElementById('pageWidthPercent').value;
     chrome.storage.sync.set({
         betterAnswerEnabled: betterAnswerEnabled,
         noAnswerEnabled: noAnswerEnabled,
@@ -39,7 +41,9 @@ function saveSettings() {
         stickyScrollOnUpvoteButtons: stickyScrollOnUpvoteButtons,
         expandAllCommentsOnCtrlfEnabled: expandAllCommentsOnCtrlfEnabled,
         hideHotNetworkQuestions: hideHotNetworkQuestions,
-        hideMetaPosts: hideMetaPosts
+        hideMetaPosts: hideMetaPosts,
+        adjustPageWidthEnabled: adjustPageWidthEnabled,
+        pageWidthPercent: pageWidthPercent
     }, function() {
         showSaveConfirmation();
         return false;
@@ -62,7 +66,9 @@ function restoreSettings() {
         stickyScrollOnUpvoteButtons: true,
         expandAllCommentsOnCtrlfEnabled: true,
         hideHotNetworkQuestions: false,
-        hideMetaPosts: false
+        hideMetaPosts: false,
+        adjustPageWidthEnabled: false,
+        pageWidthPercent: 90
     }, function(items) {
         document.getElementById('betterAnswerEnabled').checked = items.betterAnswerEnabled;
         document.getElementById('noAnswerEnabled').checked = items.noAnswerEnabled;
@@ -75,6 +81,8 @@ function restoreSettings() {
         document.getElementById('expandAllCommentsOnCtrlfEnabled').checked = items.expandAllCommentsOnCtrlfEnabled;
         document.getElementById('hideHotNetworkQuestions').checked = items.hideHotNetworkQuestions;
         document.getElementById('hideMetaPosts').checked = items.hideMetaPosts;
+        document.getElementById('adjustPageWidthEnabled').checked = items.adjustPageWidthEnabled;
+        document.getElementById('pageWidthPercent').value = items.pageWidthPercent;
     });
 }
 

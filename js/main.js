@@ -48,6 +48,13 @@ getUserPrefs(function() {
     }
 
 
+    //PAGE WIDTH
+
+    if (userPrefs.adjustPageWidthEnabled) {
+        adjustPageWidth(userPrefs.pageWidthPercent);
+    }
+
+
     //MISCELLANEOUS
 
     if (userPrefs.bypassMinRepToViewVoteCountsEnabled) {
@@ -154,7 +161,9 @@ function getUserPrefs(callback) {
         stickyScrollOnUpvoteButtons: true,
         expandAllCommentsOnCtrlfEnabled: true,
         hideHotNetworkQuestions: false,
-        hideMetaPosts: false
+        hideMetaPosts: false,
+        adjustPageWidthEnabled: false,
+        pageWidthPercent: 90
     }, function(items) {
         userPrefs = items;
         callback();

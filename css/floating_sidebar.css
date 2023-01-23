@@ -1,10 +1,9 @@
 .social {
     /*width: 200px; reAddForDetails*/
     width: 70px;
-    height: 220px;
     position: fixed;
     top: 50%;
-    margin-top: -110px;
+    transform: translate(0%, -50%); /* center vertically regardless of height (https://stackoverflow.com/a/2006008/4894980)*/
     perspective: 1000px;
     opacity: 0.97;
 

@@ -21,6 +21,7 @@ function saveSettings() {
     let noAnswerEnabled = document.getElementById('noAnswerEnabled').checked;
     let autoScrollFirstAnswerEnabled = document.getElementById('autoScrollFirstAnswerEnabled').checked;
     let showSidebarEnabled = document.getElementById('showSidebarEnabled').checked;
+    let nbAnswersInSidebar = document.getElementById('nbAnswersInSidebar').value;
     let navigationArrowKeysEnabled = document.getElementById('navigationArrowKeysEnabled').checked;
     let bypassMinRepToViewVoteCountsEnabled = document.getElementById('bypassMinRepToViewVoteCountsEnabled').checked;
     let autoExpandVotesCountEnabled = document.getElementById('autoExpandVotesCountEnabled').checked;
@@ -35,6 +36,7 @@ function saveSettings() {
         noAnswerEnabled: noAnswerEnabled,
         autoScrollFirstAnswerEnabled: autoScrollFirstAnswerEnabled,
         showSidebarEnabled: showSidebarEnabled,
+        nbAnswersInSidebar: nbAnswersInSidebar,
         navigationArrowKeysEnabled: navigationArrowKeysEnabled,
         bypassMinRepToViewVoteCountsEnabled: bypassMinRepToViewVoteCountsEnabled,
         autoExpandVotesCountEnabled: autoExpandVotesCountEnabled,
@@ -60,6 +62,7 @@ function restoreSettings() {
         noAnswerEnabled: true,
         autoScrollFirstAnswerEnabled: false,
         showSidebarEnabled: true,
+        nbAnswersInSidebar: 5,
         navigationArrowKeysEnabled: true,
         bypassMinRepToViewVoteCountsEnabled: true,
         autoExpandVotesCountEnabled: true,
@@ -74,6 +77,7 @@ function restoreSettings() {
         document.getElementById('noAnswerEnabled').checked = items.noAnswerEnabled;
         document.getElementById('autoScrollFirstAnswerEnabled').checked = items.autoScrollFirstAnswerEnabled;
         document.getElementById('showSidebarEnabled').checked = items.showSidebarEnabled;
+        document.getElementById('nbAnswersInSidebar').value = items.nbAnswersInSidebar;
         document.getElementById('navigationArrowKeysEnabled').checked = items.navigationArrowKeysEnabled;
         document.getElementById('bypassMinRepToViewVoteCountsEnabled').checked = items.bypassMinRepToViewVoteCountsEnabled;
         document.getElementById('autoExpandVotesCountEnabled').checked = items.autoExpandVotesCountEnabled;

@@ -1,10 +1,11 @@
-const nbAnswersInSidebar = 5; //the number of answers to show in floating sidebar
+var nbAnswersInSidebar = 5; //the number of answers to show in floating sidebar
 
 
 /**
  * Setup the votes counts sidebar.
  */
-function setupSidebarWithVotesCounts() {
+function setupSidebarWithVotesCounts(nbAnswers) {
+    nbAnswersInSidebar = nbAnswers;
     showSidebarWithVotesCounts();
     checkIfIHaveAlreadyUpvotedAnAnswer();
     addListenerOnUpvoteButtons();

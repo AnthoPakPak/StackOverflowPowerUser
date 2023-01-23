@@ -22,7 +22,7 @@ getUserPrefs(function() {
     // sandbox();
 
     if (userPrefs.showSidebarEnabled) {
-        setupSidebarWithVotesCounts();
+        setupSidebarWithVotesCounts(parseInt(userPrefs.nbAnswersInSidebar));
     }
 
 
@@ -155,6 +155,7 @@ function getUserPrefs(callback) {
         noAnswerEnabled: true,
         autoScrollFirstAnswerEnabled: false,
         showSidebarEnabled: true,
+        nbAnswersInSidebar: 5,
         navigationArrowKeysEnabled: true,
         bypassMinRepToViewVoteCountsEnabled: true,
         autoExpandVotesCountEnabled: true,

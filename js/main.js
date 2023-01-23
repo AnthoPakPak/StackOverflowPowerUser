@@ -51,7 +51,7 @@ getUserPrefs(function() {
     //PAGE WIDTH
 
     if (userPrefs.adjustPageWidthEnabled) {
-        adjustPageWidth(userPrefs.pageWidthPercent);
+        adjustPageWidth(parseInt(userPrefs.pageWidthPercent));
     }
 
 

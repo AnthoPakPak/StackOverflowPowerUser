@@ -21,7 +21,10 @@ function hideHotNetworkQuestions() {
  * Hide the "Featured on Meta" & "Hot Meta posts" block from right sidebar to prevent distraction.
  */
 function hideMetaPosts() {
-    document.getElementsByClassName("module community-bulletin")[0].style.display = 'none';
+    let metaPostsClass = "s-sidebarwidget s-sidebarwidget__yellow s-anchors";
+    if (document.getElementsByClassName(metaPostsClass).length > 0) {
+        document.getElementsByClassName(metaPostsClass)[0].style.display = 'none';
+    }
 }
 
 //endregion

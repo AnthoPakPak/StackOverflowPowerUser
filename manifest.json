@@ -27,7 +27,8 @@
             	"https://*.serverfault.com/*/*",
             	"https://*.mathoverflow.net/*/*",
             	"https://*.meta.stackoverflow.com/*/*",
-            	"https://*.meta.stackexchange.com/*/*"]
+            	"https://*.meta.stackexchange.com/*/*",
+            	"https://stackoverflow.*.com/*/*"]
   }],
 
   "web_accessible_resources": [{
